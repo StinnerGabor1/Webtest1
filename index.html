@@ -17,7 +17,7 @@
         padding: 0;
         box-sizing: border-box;
       }
-      
+
       body {
         font-family: 'Inter', sans-serif;
         background: linear-gradient(135deg, #1a4d0f, #2d5016, #3d6b1f, #4a7c23, #5a8f2a);
@@ -26,7 +26,7 @@
         overflow-x: hidden;
         position: relative;
       }
-      
+
       /* Enhanced Nature Background with Parallax Effect */
       .nature-bg {
         position: fixed;
@@ -37,7 +37,7 @@
         z-index: -2;
         background: linear-gradient(135deg, #1a4d0f, #2d5016, #3d6b1f, #4a7c23, #5a8f2a);
       }
-      
+
       .nature-bg::before {
         content: '';
         position: absolute;
@@ -45,7 +45,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: 
+        background:
           radial-gradient(circle at 20% 80%, rgba(139, 195, 74, 0.3) 0%, transparent 50%),
           radial-gradient(circle at 80% 20%, rgba(76, 175, 80, 0.25) 0%, transparent 50%),
           radial-gradient(circle at 40% 40%, rgba(104, 159, 56, 0.2) 0%, transparent 50%),
@@ -61,7 +61,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: 
+        background-image:
           radial-gradient(2px 2px at 20px 30px, rgba(139, 195, 74, 0.4), transparent),
           radial-gradient(2px 2px at 40px 70px, rgba(76, 175, 80, 0.3), transparent),
           radial-gradient(1px 1px at 90px 40px, rgba(104, 159, 56, 0.5), transparent),
@@ -70,7 +70,7 @@
         background-size: 150px 100px;
         animation: floatingParticles 20s linear infinite;
       }
-      
+
       @keyframes natureFloat {
         0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
         25% { transform: translateY(-10px) rotate(0.3deg); opacity: 0.8; }
@@ -86,9 +86,9 @@
       /* Expanded Layout Grid for Ads */
       .page-layout {
         display: grid;
-        grid-template-columns: 320px 1fr 320px;
+        grid-template-columns: 250px 1fr 250px;
         gap: 2rem;
-        max-width: 1600px;
+        max-width: 1500px;
         margin: 0 auto;
         padding: 2rem;
         min-height: 100vh;
@@ -102,7 +102,7 @@
 
       .main-content {
         min-width: 0;
-        max-width: 800px;
+        max-width: 1000px;
         margin: 0 auto;
       }
 
@@ -127,7 +127,7 @@
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         position: sticky;
         top: 2rem;
-        box-shadow: 
+        box-shadow:
           0 15px 35px rgba(0, 0, 0, 0.1),
           inset 0 1px 0 rgba(255, 255, 255, 0.1);
         overflow: hidden;
@@ -152,7 +152,7 @@
         background: rgba(255, 255, 255, 0.12);
         border-color: rgba(139, 195, 74, 0.4);
         transform: translateY(-5px) scale(1.02);
-        box-shadow: 
+        box-shadow:
           0 25px 50px rgba(0, 0, 0, 0.15),
           0 0 30px rgba(139, 195, 74, 0.2),
           inset 0 1px 0 rgba(255, 255, 255, 0.15);
@@ -199,7 +199,7 @@
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         border-color: rgba(139, 195, 74, 0.4);
       }
-      
+
       /* Enhanced Main Container with Depth */
       .main-container {
         background: rgba(255, 255, 255, 0.1);
@@ -207,7 +207,7 @@
         border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 35px;
         padding: 3.5rem;
-        box-shadow: 
+        box-shadow:
           0 30px 60px rgba(0, 0, 0, 0.2),
           inset 0 1px 0 rgba(255, 255, 255, 0.1);
         position: relative;
@@ -223,11 +223,11 @@
         left: 0;
         right: 0;
         height: 2px;
-        background: linear-gradient(90deg, 
-          transparent, 
-          rgba(139, 195, 74, 0.8), 
+        background: linear-gradient(90deg,
+          transparent,
+          rgba(139, 195, 74, 0.8),
           rgba(76, 175, 80, 0.6),
-          rgba(139, 195, 74, 0.8), 
+          rgba(139, 195, 74, 0.8),
           transparent
         );
         animation: borderGlow 3s ease-in-out infinite;
@@ -237,7 +237,7 @@
         0%, 100% { opacity: 0.5; transform: scaleX(0.8); }
         50% { opacity: 1; transform: scaleX(1); }
       }
-      
+
       /* Enhanced Logo with 3D Effect */
       .logo-container {
         display: flex;
@@ -246,7 +246,7 @@
         margin-bottom: 2.5rem;
         position: relative;
       }
-      
+
       .logo {
         width: 80px;
         height: 80px;
@@ -257,7 +257,7 @@
         justify-content: center;
         font-size: 2.2rem;
         margin-right: 1.5rem;
-        box-shadow: 
+        box-shadow:
           0 15px 35px rgba(139, 195, 74, 0.4),
           inset 0 2px 0 rgba(255, 255, 255, 0.2),
           inset 0 -2px 0 rgba(0, 0, 0, 0.1);
@@ -277,7 +277,7 @@
         transform: rotate(45deg);
         animation: logoShine 3s ease-in-out infinite;
       }
-      
+
       @keyframes logoFloat {
         0%, 100% { transform: translateY(0px) rotate(0deg); }
         50% { transform: translateY(-8px) rotate(1deg); }
@@ -288,13 +288,13 @@
         50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
       }
-      
+
       h1 {
         color: #ffffff;
         font-weight: 800;
         font-size: 2.8rem;
         margin: 0;
-        text-shadow: 
+        text-shadow:
           0 2px 8px rgba(0, 0, 0, 0.3),
           0 0 20px rgba(139, 195, 74, 0.3);
         background: linear-gradient(135deg, #ffffff 0%, #e8f5e8 100%);
@@ -302,7 +302,7 @@
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
-      
+
       .subtitle {
         color: rgba(255, 255, 255, 0.9);
         font-size: 1.2rem;
@@ -318,7 +318,7 @@
         margin: 2.5rem 0;
         border-radius: 30px;
         overflow: hidden;
-        box-shadow: 
+        box-shadow:
           0 20px 50px rgba(0, 0, 0, 0.3),
           0 0 0 1px rgba(139, 195, 74, 0.2);
         background: rgba(0, 0, 0, 0.2);
@@ -335,13 +335,13 @@
       }
 
       @keyframes cinematicSlide {
-        from { 
-          opacity: 0; 
+        from {
+          opacity: 0;
           transform: scale(1.1) translateX(50px);
           filter: blur(5px);
         }
-        to { 
-          opacity: 1; 
+        to {
+          opacity: 1;
           transform: scale(1) translateX(0);
           filter: blur(0px);
         }
@@ -420,7 +420,7 @@
       .indicator.active {
         background: #8bc34a;
         transform: scale(1.4);
-        box-shadow: 
+        box-shadow:
           0 0 15px rgba(139, 195, 74, 0.6),
           0 0 30px rgba(139, 195, 74, 0.3);
       }
@@ -429,7 +429,7 @@
         border-color: rgba(139, 195, 74, 0.4);
         transform: scale(1.5);
       }
-      
+
       /* Interactive Upload Section */
       .upload-section {
         background: rgba(255, 255, 255, 0.08);
@@ -453,7 +453,7 @@
         opacity: 0;
         transition: opacity 0.4s ease;
       }
-      
+
       .upload-section:hover {
         border-color: rgba(139, 195, 74, 0.8);
         background: rgba(139, 195, 74, 0.1);
@@ -464,7 +464,7 @@
       .upload-section:hover::before {
         opacity: 1;
       }
-      
+
       /* Enhanced Form Controls */
       .form-control {
         background: rgba(255, 255, 255, 0.15);
@@ -476,17 +476,17 @@
         transition: all 0.3s ease;
         backdrop-filter: blur(10px);
       }
-      
+
       .form-control:focus {
         background: rgba(255, 255, 255, 0.2);
         border-color: #8bc34a;
-        box-shadow: 
+        box-shadow:
           0 0 0 0.25rem rgba(139, 195, 74, 0.25),
           0 8px 25px rgba(139, 195, 74, 0.15);
         color: #ffffff;
         transform: translateY(-2px);
       }
-      
+
       .form-control::file-selector-button {
         background: linear-gradient(135deg, #8bc34a 0%, #689f38 100%);
         border: none;
@@ -500,13 +500,13 @@
         font-size: 0.95rem;
         box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
       }
-      
+
       .form-control::file-selector-button:hover {
         transform: translateY(-2px);
         box-shadow: 0 8px 25px rgba(139, 195, 74, 0.4);
         background: linear-gradient(135deg, #9ccc65 0%, #7cb342 100%);
       }
-      
+
       /* Premium Button Design */
       .btn-primary {
         background: linear-gradient(135deg, #8bc34a 0%, #689f38 50%, #558b2f 100%);
@@ -518,7 +518,7 @@
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         text-transform: uppercase;
         letter-spacing: 1px;
-        box-shadow: 
+        box-shadow:
           0 10px 30px rgba(139, 195, 74, 0.3),
           inset 0 1px 0 rgba(255, 255, 255, 0.2);
         position: relative;
@@ -539,15 +539,15 @@
       .btn-primary:hover::before {
         left: 100%;
       }
-      
+
       .btn-primary:hover {
         transform: translateY(-3px) scale(1.05);
-        box-shadow: 
+        box-shadow:
           0 15px 40px rgba(139, 195, 74, 0.4),
           0 0 30px rgba(139, 195, 74, 0.3);
         background: linear-gradient(135deg, #9ccc65 0%, #7cb342 50%, #689f38 100%);
       }
-      
+
       /* Cinematic Result Section */
       .result-section {
         background: rgba(255, 255, 255, 0.12);
@@ -557,11 +557,11 @@
         margin-top: 2.5rem;
         backdrop-filter: blur(15px);
         animation: resultReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 
+        box-shadow:
           0 20px 50px rgba(0, 0, 0, 0.15),
           inset 0 1px 0 rgba(255, 255, 255, 0.1);
       }
-      
+
       @keyframes resultReveal {
         from {
           opacity: 0;
@@ -572,7 +572,7 @@
           transform: translateY(0) scale(1);
         }
       }
-      
+
       .result-header {
         color: #ffffff;
         font-size: 1.8rem;
@@ -581,18 +581,18 @@
         text-align: center;
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       }
-      
+
       .prediction-text {
         font-size: 2rem;
         font-weight: 800;
         color: #8bc34a;
         text-transform: capitalize;
         margin-bottom: 1.2rem;
-        text-shadow: 
+        text-shadow:
           0 2px 8px rgba(139, 195, 74, 0.3),
           0 0 20px rgba(139, 195, 74, 0.2);
       }
-      
+
       .probability-text {
         font-size: 1.3rem;
         font-weight: 600;
@@ -600,7 +600,7 @@
         margin-bottom: 2rem;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
       }
-      
+
       /* Animated Progress Bar */
       .progress {
         height: 12px;
@@ -626,12 +626,12 @@
         0% { transform: translateX(-100%); }
         100% { transform: translateX(100%); }
       }
-      
+
       .progress-bar {
         background: linear-gradient(135deg, #8bc34a 0%, #689f38 50%, #558b2f 100%);
         border-radius: 10px;
         transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 
+        box-shadow:
           0 0 15px rgba(139, 195, 74, 0.5),
           inset 0 1px 0 rgba(255, 255, 255, 0.2);
         position: relative;
@@ -653,25 +653,25 @@
         0%, 100% { transform: translateX(-100%); }
         50% { transform: translateX(100%); }
       }
-      
+
       .image {
         max-width: 100%;
         height: auto;
         border-radius: 20px;
-        box-shadow: 
+        box-shadow:
           0 15px 40px rgba(0, 0, 0, 0.3),
           0 0 0 1px rgba(139, 195, 74, 0.3);
         border: 3px solid rgba(139, 195, 74, 0.4);
         transition: all 0.4s ease;
       }
-      
+
       .image:hover {
         transform: scale(1.03);
-        box-shadow: 
+        box-shadow:
           0 20px 50px rgba(0, 0, 0, 0.4),
           0 0 30px rgba(139, 195, 74, 0.3);
       }
-      
+
       .upload-icon {
         font-size: 3rem;
         margin-bottom: 1.5rem;
@@ -687,7 +687,7 @@
         padding: 3rem;
         margin: 2.5rem 0;
         backdrop-filter: blur(15px);
-        box-shadow: 
+        box-shadow:
           0 20px 50px rgba(0, 0, 0, 0.15),
           inset 0 1px 0 rgba(255, 255, 255, 0.1);
         animation: galleryReveal 1s cubic-bezier(0.4, 0, 0.2, 1);
@@ -745,7 +745,7 @@
       .gallery-item:hover {
         transform: translateY(-8px) scale(1.02);
         border-color: rgba(139, 195, 74, 0.5);
-        box-shadow: 
+        box-shadow:
           0 20px 40px rgba(0, 0, 0, 0.2),
           0 0 30px rgba(139, 195, 74, 0.2);
       }
@@ -800,7 +800,7 @@
         padding: 3rem;
         margin: 2.5rem 0;
         backdrop-filter: blur(15px);
-        box-shadow: 
+        box-shadow:
           0 10px 30px rgba(0, 0, 0, 0.1),
           inset 0 1px 0 rgba(255, 255, 255, 0.1);
         transition: all 0.3s ease;
@@ -808,7 +808,7 @@
 
       .info-section:hover {
         transform: translateY(-3px);
-        box-shadow: 
+        box-shadow:
           0 15px 40px rgba(0, 0, 0, 0.15),
           inset 0 1px 0 rgba(255, 255, 255, 0.15);
       }
@@ -901,48 +901,48 @@
           gap: 1.5rem;
           padding: 1.5rem;
         }
-        
+
         .ad-space {
           min-height: 250px;
           padding: 1.5rem;
         }
-        
+
         .ad-space.large {
           min-height: 550px;
         }
       }
-      
+
       @media (max-width: 1200px) {
         .page-layout {
           grid-template-columns: 1fr;
           gap: 1rem;
           max-width: 900px;
         }
-        
+
         .left-sidebar, .right-sidebar {
           display: none;
         }
-        
+
         .header-ad, .footer-ad {
           display: flex;
         }
-        
+
         .main-content {
           max-width: 100%;
         }
       }
-      
+
       @media (max-width: 768px) {
         .main-container {
           margin: 0;
           padding: 2.5rem;
           border-radius: 25px;
         }
-        
+
         h1 {
           font-size: 2.2rem;
         }
-        
+
         .logo {
           width: 70px;
           height: 70px;
@@ -973,9 +973,22 @@
           padding: 2.5rem;
         }
 
-        .gallery-grid {
-          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-          gap: 1rem;
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);;
+            gap: 15px;
+        }
+        .grid-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            transition: transform 0.2s ease;
+            object-fit: cover;
+        }
+        .grid-container img:hover {
+            transform: scale(1.05);
+            cursor: pointer;
         }
 
         .gallery-item img {
@@ -1065,7 +1078,7 @@
   </head>
   <body>
     <div class="nature-bg"></div>
-    
+
     <div class="page-layout">
       <!-- Left Sidebar Ads (Desktop) -->
       <div class="left-sidebar">
@@ -1098,77 +1111,77 @@
           <!-- Enhanced Bird Slideshow with More Images -->
           <div class="slideshow-container">
             <div class="slide active">
-              <img src="https://images.pexels.com/photos/326900/pexels-photo-326900.jpeg" alt="Cardinal">
+              <img src="https://www.allaboutbirds.org/guide/assets/photo/297087301-480px.jpg" alt="Cardinal">
               <div class="slide-caption">
                 <h3>Northern Cardinal</h3>
                 <p>Recognizable by their brilliant red plumage and distinctive crest, these songbirds are year-round residents across eastern North America</p>
               </div>
             </div>
             <div class="slide">
-              <img src="https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg" alt="Blue Jay">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Cyanocitta_cristata_blue_jay.jpg/1014px-Cyanocitta_cristata_blue_jay.jpg" alt="Blue Jay">
               <div class="slide-caption">
                 <h3>Blue Jay</h3>
                 <p>Highly intelligent corvids known for their striking blue coloration, complex social behaviors, and remarkable memory capabilities</p>
               </div>
             </div>
             <div class="slide">
-              <img src="https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg" alt="Robin">
+              <img src="https://www.allaboutbirds.org/guide/assets/photo/303441781-480px.jpg" alt="Robin">
               <div class="slide-caption">
                 <h3>American Robin</h3>
                 <p>Beloved harbingers of spring with their warm orange-red breast, these thrushes are among North America's most familiar birds</p>
               </div>
             </div>
             <div class="slide">
-              <img src="https://images.pexels.com/photos/1462636/pexels-photo-1462636.jpeg" alt="Owl">
+              <img src="https://malheurfriends.org/wp-content/uploads/2025/02/49437585322_c676c7ad04_5k.jpg" alt="Owl">
               <div class="slide-caption">
                 <h3>Great Horned Owl</h3>
                 <p>Apex nocturnal predators with exceptional hearing and silent flight, distinguished by their prominent ear tufts and piercing yellow eyes</p>
               </div>
             </div>
             <div class="slide">
-              <img src="https://images.pexels.com/photos/1300355/pexels-photo-1300355.jpeg" alt="Hummingbird">
+              <img src="https://abcbirds.org/wp-content/uploads/2020/04/Ruby-throated-Hummingbird_Joel-Trick-Shutterstock.jpg" alt="Hummingbird">
               <div class="slide-caption">
                 <h3>Ruby-throated Hummingbird</h3>
                 <p>Remarkable aerial acrobats capable of hovering, flying backwards, and beating their wings up to 80 times per second</p>
               </div>
             </div>
             <div class="slide">
-              <img src="https://images.pexels.com/photos/1059823/pexels-photo-1059823.jpeg" alt="Eagle">
+              <img src="https://images.pexels.com/photos/133356/pexels-photo-133356.jpeg" alt="Eagle">
               <div class="slide-caption">
                 <h3>Bald Eagle</h3>
                 <p>America's national bird, these majestic raptors are powerful hunters with incredible eyesight and impressive wingspans up to 8 feet</p>
               </div>
             </div>
             <div class="slide">
-              <img src="https://images.pexels.com/photos/1386444/pexels-photo-1386444.jpeg" alt="Peacock">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Peacock_Plumage.jpg" alt="Peacock">
               <div class="slide-caption">
                 <h3>Indian Peacock</h3>
                 <p>Stunning birds famous for their iridescent tail feathers and elaborate courtship displays, native to South Asia</p>
               </div>
             </div>
             <div class="slide">
-              <img src="https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg" alt="Woodpecker">
+              <img src="https://cdn.britannica.com/19/264119-050-A8F52996/Pileated-woodpecker-dryocopus-pileatus-bird-ding-darling-Sanibel-Island-Florida.jpg" alt="Woodpecker">
               <div class="slide-caption">
                 <h3>Pileated Woodpecker</h3>
                 <p>North America's largest woodpecker, known for their distinctive red crest and powerful drumming on tree trunks</p>
               </div>
             </div>
             <div class="slide">
-              <img src="https://images.pexels.com/photos/1300355/pexels-photo-1300355.jpeg" alt="Flamingo">
+              <img src="https://cdn.download.ams.birds.cornell.edu/api/v2/asset/320036721/900" alt="Flamingo">
               <div class="slide-caption">
                 <h3>American Flamingo</h3>
                 <p>Elegant wading birds with vibrant pink plumage, known for their unique feeding behavior and social flocking patterns</p>
               </div>
             </div>
             <div class="slide">
-              <img src="https://images.pexels.com/photos/326900/pexels-photo-326900.jpeg" alt="Kingfisher">
+              <img src="https://www.allaboutbirds.org/guide/assets/photo/303711061-480px.jpg" alt="Kingfisher">
               <div class="slide-caption">
                 <h3>Belted Kingfisher</h3>
                 <p>Expert fishers with distinctive rattling calls, these birds dive headfirst into water to catch their prey</p>
               </div>
             </div>
           </div>
-          
+
           <div class="slideshow-indicators">
             <span class="indicator active" onclick="currentSlide(1)"></span>
             <span class="indicator" onclick="currentSlide(2)"></span>
@@ -1190,7 +1203,7 @@
                 Select a bird image to identify the species with our advanced AI technology
               </p>
             </div>
-            
+
             <form class="p-3 text-center" action='/' method="post" enctype="multipart/form-data">
               <input class="form-control" type="file" name="imagefile">
               <input class="btn btn-primary mt-4" type="submit" value="Predict Bird Species">
@@ -1204,12 +1217,12 @@
             <div class="text-center">
               <p class="prediction-text">{{ prediction }}</p>
               <p class="probability-text">Confidence Level: {{ prob }}%</p>
-              
+
               <div class="progress">
                 <div class="progress-bar" role="progressbar" style="width: {{ prob }}%;" aria-valuenow="{{ prob }}" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
-              
-              <img src="{{ url_for('static', filename=file) }}" class="image" alt="Classified bird image">
+
+              <img src="{{ url_for('static', filename=file) }}" class="image" alt="Classified bird image" loading="lazy">
             </div>
           </div>
 
@@ -1219,9 +1232,11 @@
               <h3 class="gallery-title">More {{ prediction }} Images</h3>
               <p class="gallery-subtitle">Explore additional photos and information about this beautiful species</p>
             </div>
-            
-            <div class="gallery-grid" id="galleryGrid">
-              <!-- Gallery items will be populated by JavaScript based on the predicted species -->
+
+            <div class="grid-container">
+              {% for url in image_urls %}
+                 <img src="{{ (url) }}" alt="{{ bird_name }}" width="45%" loading="lazy" style="margin:10px;">
+              {% endfor %}
             </div>
           </div>
           {% endif %}
@@ -1281,7 +1296,7 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
       let slideIndex = 1;
       const totalSlides = 10; // Updated to match new slide count
@@ -1301,18 +1316,18 @@
       function showSlide(n) {
         let slides = document.getElementsByClassName("slide");
         let indicators = document.getElementsByClassName("indicator");
-        
+
         if (n > slides.length) { slideIndex = 1; }
         if (n < 1) { slideIndex = slides.length; }
-        
+
         for (let i = 0; i < slides.length; i++) {
           slides[i].classList.remove("active");
         }
-        
+
         for (let i = 0; i < indicators.length; i++) {
           indicators[i].classList.remove("active");
         }
-        
+
         slides[slideIndex - 1].classList.add("active");
         indicators[slideIndex - 1].classList.add("active");
       }
@@ -1387,11 +1402,6 @@
         ],
         'owl': [
           {
-            image: 'https://images.pexels.com/photos/1462636/pexels-photo-1462636.jpeg',
-            title: 'Great Horned Owl',
-            description: 'Majestic owl with prominent ear tufts'
-          },
-          {
             image: 'https://images.pexels.com/photos/326900/pexels-photo-326900.jpeg',
             title: 'Owl in Flight',
             description: 'Silent flight of nocturnal hunter'
@@ -1435,16 +1445,16 @@
       function populateBirdGallery(species) {
         const gallery = document.getElementById('birdGallery');
         const galleryGrid = document.getElementById('galleryGrid');
-        
+
         if (!gallery || !galleryGrid) return;
-        
+
         // Clear existing gallery items
         galleryGrid.innerHTML = '';
-        
+
         // Get species data (normalize species name)
         const normalizedSpecies = species.toLowerCase().trim();
         const speciesData = birdGalleryData[normalizedSpecies] || birdGalleryData['cardinal']; // fallback
-        
+
         // Create gallery items
         speciesData.forEach(item => {
           const galleryItem = document.createElement('div');
@@ -1458,7 +1468,7 @@
           `;
           galleryGrid.appendChild(galleryItem);
         });
-        
+
         // Show the gallery
         gallery.classList.remove('hidden');
       }
@@ -1488,7 +1498,7 @@
         ad.addEventListener('mouseenter', function() {
           this.style.transform = 'translateY(-8px) scale(1.02)';
         });
-        
+
         ad.addEventListener('mouseleave', function() {
           this.style.transform = 'translateY(0) scale(1)';
         });
