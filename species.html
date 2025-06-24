@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bird Species - AI Bird Classifier</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(50px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .search-focus:focus {
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+                        <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-bold text-gray-800">AI Bird Classifier</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+                        ← Back to Classifier
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="text-center animate-fade-in">
+                <div class="flex items-center justify-center mb-6">
+                    <div class="w-20 h-20 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-3xl flex items-center justify-center shadow-xl animate-float">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                </div>
+                <h1 class="text-5xl lg:text-6xl font-bold text-gray-800 mb-6">
+                    Bird Species Database
+                    <span class="text-4xl">🦅</span>
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
+                    Explore all the bird species our AI model can identify. Each species includes detailed information, habitat details, and fascinating facts.
+                </p>
+
+                <!-- Stats -->
+                <div class="flex flex-wrap items-center justify-center gap-6 mb-12">
+                    <div class="bg-white/80 backdrop-blur-sm rounded-2xl px-6 py-4 shadow-lg">
+                        <div class="text-3xl font-bold text-blue-600" id="species-count">200+</div>
+                        <div class="text-sm text-gray-600 font-medium">Species</div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-2xl px-6 py-4 shadow-lg">
+                        <div class="text-3xl font-bold text-emerald-600">95%</div>
+                        <div class="text-sm text-gray-600 font-medium">Accuracy</div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-2xl px-6 py-4 shadow-lg">
+                        <div class="text-3xl font-bold text-purple-600">24/7</div>
+                        <div class="text-sm text-gray-600 font-medium">Available</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8">
+            <div class="flex flex-col lg:flex-row gap-6 items-center">
+                <!-- Search Bar -->
+                <div class="flex-1 w-full">
+                    <div class="relative">
+                        <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Search bird species..."
+                            class="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent search-focus text-lg"
+                        >
+                    </div>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap gap-3">
+                    <button class="filter-btn active px-6 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors" data-filter="all">
+                        All Species
+                    </button>
+                    <button class="filter-btn px-6 py-3 bg-gray-200 text-gray-700 rounded-xl font-medium hover:bg-gray-300 transition-colors" data-filter="common">
+                        Common
+                    </button>
+                    <button class="filter-btn px-6 py-3 bg-gray-200 text-gray-700 rounded-xl font-medium hover:bg-gray-300 transition-colors" data-filter="rare">
+                        Rare
+                    </button>
+                    <button class="filter-btn px-6 py-3 bg-gray-200 text-gray-700 rounded-xl font-medium hover:bg-gray-300 transition-colors" data-filter="waterbird">
+                        Water Birds
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Species Grid -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div id="speciesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <!-- Species cards will be populated by JavaScript -->
+        </div>
+
+        <!-- No Results Message -->
+        <div id="noResults" class="hidden text-center py-16">
+            <div class="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">No Species Found</h3>
+            <p class="text-gray-600 max-w-md mx-auto">Try adjusting your search terms or filters to find the bird species you're looking for.</p>
+        </div>
+    </div>
+
+    <!-- Species Modal -->
+    <div id="speciesModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                <div id="modalContent">
+                    <!-- Modal content will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Comprehensive bird species database
+        const birdSpecies = [
+            {
+                name: "American Robin",
+                scientificName: "Turdus migratorius",
+                category: "common",
+                habitat: "Gardens, parks, woodlands",
+                diet: "Insects, worms, berries",
+                size: "8-11 inches",
+                wingspan: "12-16 inches",
+                description: "A familiar sight across North America, known for their bright red breast and melodious song.",
+                funFact: "Robins are often the first birds to sing at dawn and among the last to stop singing at dusk.",
+                image: "https://images.pexels.com/photos/326900/pexels-photo-326900.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+                name: "Northern Cardinal",
+                scientificName: "Cardinalis cardinalis",
+                category: "common",
+                habitat: "Woodlands, gardens, shrublands",
+                diet: "Seeds, grains, fruits, insects",
+                size: "8.5-9 inches",
+                wingspan: "10-12 inches",
+                description: "Vibrant red males and warm brown females make this species easily recognizable year-round.",
+                funFact: "Cardinals mate for life and can live up to 15 years in the wild.",
+                image: "https://images.pexels.com/photos/53581/bald-eagles-bald-eagle-bird-of-prey-adler-53581.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+                name: "Blue Jay",
+                scientificName: "Cyanocitta cristata",
+                category: "common",
+                habitat: "Oak and pine forests, suburban areas",
+                diet: "Nuts, seeds, insects, small reptiles",
+                size: "11-12 inches",
+                wingspan: "13-17 inches",
+                description: "Intelligent and social birds known for their striking blue coloration and complex vocalizations.",
+                funFact: "Blue Jays can mimic the calls of hawks to scare other birds away from food sources.",
+                image: "https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+                name: "Bald Eagle",
+                scientificName: "Haliaeetus leucocephalus",
+                category: "rare",
+                habitat: "Near large bodies of water",
+                diet: "Fish, waterfowl, small mammals",
+                size: "28-40 inches",
+                wingspan: "5.9-7.5 feet",
+                description: "America's national bird, a powerful raptor that has made a remarkable recovery from near extinction.",
+                funFact: "Bald Eagles aren't actually bald - their name comes from the Old English 'balde' meaning white.",
+                image: "https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+                name: "Great Blue Heron",
+                scientificName: "Ardea herodias",
+                category: "waterbird",
+                habitat: "Wetlands, shores, marshes",
+                diet: "Fish, frogs, small mammals, reptiles",
+                size: "38-54 inches",
+                wingspan: "5.5-6.6 feet",
+                description: "Large wading birds known for their patient hunting style and impressive size.",
+                funFact: "Great Blue Herons can strike with lightning speed, taking only 1/10th of a second to spear a fish.",
+                image: "https://images.pexels.com/photos/326900/pexels-photo-326900.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+                name: "Mallard Duck",
+                scientificName: "Anas platyrhynchos",
+                category: "waterbird",
+                habitat: "Ponds, lakes, rivers, wetlands",
+                diet: "Aquatic plants, insects, small fish",
+                size: "19.7-25.6 inches",
+                wingspan: "32.1-37.4 inches",
+                description: "The most recognizable duck species, with males displaying iridescent green heads.",
+                funFact: "Mallards are the ancestors of most domestic duck breeds.",
+                image: "https://images.pexels.com/photos/53581/bald-eagles-bald-eagle-bird-of-prey-adler-53581.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+                name: "Red-tailed Hawk",
+                scientificName: "Buteo jamaicensis",
+                category: "common",
+                habitat: "Open woodlands, prairies, deserts",
+                diet: "Small mammals, birds, reptiles",
+                size: "17.7-22.1 inches",
+                wingspan: "44.9-52.4 inches",
+                description: "One of the most common hawks in North America, easily identified by their distinctive red tail.",
+                funFact: "Red-tailed Hawks have excellent eyesight and can spot a mouse from 100 feet away.",
+                image: "https://images.pexels.com/photos/326900/pexels-photo-326900.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+                name: "House Sparrow",
+                scientificName: "Passer domesticus",
+                category: "common",
+                habitat: "Urban areas, farms, parks",
+                diet: "Seeds, insects, scraps",
+                size: "5.9-6.7 inches",
+                wingspan: "7.5-9.8 inches",
+                description: "Small, social birds that have adapted well to urban environments worldwide.",
+                funFact: "House Sparrows take dust baths to keep their feathers clean and parasite-free.",
+                image: "https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+                name: "Peregrine Falcon",
+                scientificName: "Falco peregrinus",
+                category: "rare",
+                habitat: "Cliffs, tall buildings, bridges",
+                diet: "Birds caught in flight",
+                size: "14.2-19.3 inches",
+                wingspan: "29.1-47.2 inches",
+                description: "The fastest bird in the world, capable of reaching speeds over 240 mph in hunting dives.",
+                funFact: "Peregrine Falcons have been clocked at speeds of 242 mph during hunting stoops.",
+                image: "https://images.pexels.com/photos/53581/bald-eagles-bald-eagle-bird-of-prey-adler-53581.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+                name: "Great Horned Owl",
+                scientificName: "Bubo virginianus",
+                category: "common",
+                habitat: "Forests, swamps, deserts, urban areas",
+                diet: "Small mammals, birds, reptiles",
+                size: "18.1-24.8 inches",
+                wingspan: "39.8-57.1 inches",
+                description: "Powerful nocturnal hunters with distinctive ear tufts and piercing yellow eyes.",
+                funFact: "Great Horned Owls have a grip strength of about 300 psi, stronger than a human hand.",
+                image: "https://images.pexels.com/photos/326900/pexels-photo-326900.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+                name: "Wood Duck",
+                scientificName: "Aix sponsa",
+                category: "waterbird",
+                habitat: "Wooded swamps, shallow lakes",
+                diet: "Aquatic plants, insects, seeds",
+                size: "18.5-21.3 inches",
+                wingspan: "26.0-28.7 inches",
+                description: "Considered one of the most beautiful waterfowl, with intricate plumage patterns.",
+                funFact: "Wood Duck ducklings jump from nest boxes up to 65 feet high within 24 hours of hatching.",
+                image: "https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+                name: "Snowy Owl",
+                scientificName: "Bubo scandiacus",
+                category: "rare",
+                habitat: "Arctic tundra, open fields",
+                diet: "Small mammals, especially lemmings",
+                size: "20.5-27.9 inches",
+                wingspan: "49.6-57.1 inches",
+                description: "Large white owls that migrate south from the Arctic during winter months.",
+                funFact: "Snowy Owls can rotate their heads 270 degrees and have asymmetrical ear openings for better hearing.",
+                image: "https://images.pexels.com/photos/53581/bald-eagles-bald-eagle-bird-of-prey-adler-53581.jpeg?auto=compress&cs=tinysrgb&w=400"
+            }
+        ];
+
+        let filteredSpecies = [...birdSpecies];
+        let currentFilter = 'all';
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderSpeciesGrid();
+            setupEventListeners();
+            updateSpeciesCount();
+        });
+
+        function renderSpeciesGrid() {
+            const grid = document.getElementById('speciesGrid');
+            const noResults = document.getElementById('noResults');
+
+            if (filteredSpecies.length === 0) {
+                grid.innerHTML = '';
+                noResults.classList.remove('hidden');
+                return;
+            }
+
+            noResults.classList.add('hidden');
+
+            grid.innerHTML = filteredSpecies.map((species, index) => `
+                <div class="species-card bg-white rounded-3xl shadow-lg overflow-hidden card-hover cursor-pointer animate-slide-up"
+                     style="animation-delay: ${index * 0.1}s"
+                     onclick="openSpeciesModal('${species.name}')">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="${species.image}"
+                             alt="${species.name}"
+                             class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                             loading="lazy">
+                        <div class="absolute top-4 right-4">
+                            <span class="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-gray-700 capitalize">
+                                ${species.category.replace('waterbird', 'water bird')}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">${species.name}</h3>
+                        <p class="text-sm text-gray-500 italic mb-3">${species.scientificName}</p>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">${species.description}</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-xs text-gray-500">
+                                <span class="font-medium">Size:</span> ${species.size}
+                            </div>
+                            <button class="text-blue-600 hover:text-blue-800 font-medium text-sm transition-colors">
+                                Learn More →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function setupEventListeners() {
+            // Search functionality
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', handleSearch);
+
+            // Filter buttons
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => handleFilter(btn.dataset.filter, btn));
+            });
+
+            // Modal close functionality
+            document.getElementById('speciesModal').addEventListener('click', (e) => {
+                if (e.target.id === 'speciesModal') {
+                    closeSpeciesModal();
+                }
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeSpeciesModal();
+                }
+            });
+        }
+
+        function handleSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            filteredSpecies = birdSpecies.filter(species => {
+                const matchesSearch = species.name.toLowerCase().includes(searchTerm) ||
+                                    species.scientificName.toLowerCase().includes(searchTerm) ||
+                                    species.description.toLowerCase().includes(searchTerm);
+                const matchesFilter = currentFilter === 'all' || species.category === currentFilter;
+                return matchesSearch && matchesFilter;
+            });
+            renderSpeciesGrid();
+        }
+
+        function handleFilter(filter, button) {
+            currentFilter = filter;
+
+            // Update button states
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-blue-600', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+            });
+            button.classList.add('active', 'bg-blue-600', 'text-white');
+            button.classList.remove('bg-gray-200', 'text-gray-700');
+
+            // Filter species
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            filteredSpecies = birdSpecies.filter(species => {
+                const matchesSearch = searchTerm === '' ||
+                                    species.name.toLowerCase().includes(searchTerm) ||
+                                    species.scientificName.toLowerCase().includes(searchTerm) ||
+                                    species.description.toLowerCase().includes(searchTerm);
+                const matchesFilter = filter === 'all' || species.category === filter;
+                return matchesSearch && matchesFilter;
+            });
+
+            renderSpeciesGrid();
+        }
+
+        function openSpeciesModal(speciesName) {
+            const species = birdSpecies.find(s => s.name === speciesName);
+            if (!species) return;
+
+            const modal = document.getElementById('speciesModal');
+            const modalContent = document.getElementById('modalContent');
+
+            modalContent.innerHTML = `
+                <div class="relative">
+                    <button onclick="closeSpeciesModal()"
+                            class="absolute top-6 right-6 z-10 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg">
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+
+                    <div class="h-64 md:h-80 overflow-hidden rounded-t-3xl">
+                        <img src="${species.image}" alt="${species.name}" class="w-full h-full object-cover">
+                    </div>
+
+                    <div class="p-8">
+                        <div class="mb-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium capitalize">
+                                    ${species.category.replace('waterbird', 'water bird')}
+                                </span>
+                            </div>
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">${species.name}</h2>
+                            <p class="text-lg text-gray-500 italic">${species.scientificName}</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-8 mb-8">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-4">Description</h3>
+                                <p class="text-gray-600 leading-relaxed mb-6">${species.description}</p>
+
+                                <div class="bg-blue-50 rounded-2xl p-6">
+                                    <h4 class="font-semibold text-blue-800 mb-3 flex items-center">
+                                        <span class="text-xl mr-2">💡</span>
+                                        Fun Fact
+                                    </h4>
+                                    <p class="text-blue-700">${species.funFact}</p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-4">Specifications</h3>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center py-3 border-b border-gray-200">
+                                        <span class="font-medium text-gray-700">Habitat</span>
+                                        <span class="text-gray-600">${species.habitat}</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-3 border-b border-gray-200">
+                                        <span class="font-medium text-gray-700">Diet</span>
+                                        <span class="text-gray-600">${species.diet}</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-3 border-b border-gray-200">
+                                        <span class="font-medium text-gray-700">Size</span>
+                                        <span class="text-gray-600">${species.size}</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-3">
+                                        <span class="font-medium text-gray-700">Wingspan</span>
+                                        <span class="text-gray-600">${species.wingspan}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button onclick="closeSpeciesModal()"
+                                    class="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-2xl hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                                Close Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSpeciesModal() {
+            document.getElementById('speciesModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateSpeciesCount() {
+            document.getElementById('species-count').textContent = birdSpecies.length + '+';
+        }
+
+        // Add CSS for line clamping
+        const style = document.createElement('style');
+        style.textContent = `
+            .line-clamp-3 {
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
