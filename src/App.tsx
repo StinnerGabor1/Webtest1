@@ -4,7 +4,7 @@ import { PredictionResult } from './components/PredictionResult';
 import { ErrorMessage } from './components/ErrorMessage';
 import { classifyImage, validateImageFile } from './utils/imageClassifier';
 import { UploadState } from './types';
-import { Brain, Zap, Sparkles } from 'lucide-react';
+import { Brain, Zap, Sparkles, BookOpen, Calendar, ArrowRight, User } from 'lucide-react';
 
 function App() {
   const [uploadState, setUploadState] = useState<UploadState>({
@@ -78,6 +78,40 @@ function App() {
     handleClearImage();
   };
 
+  // Blog posts data
+  const blogPosts = [
+    {
+      id: 1,
+      title: "Understanding Bird Migration Patterns with AI",
+      excerpt: "Discover how artificial intelligence is revolutionizing our understanding of bird migration patterns and helping conservation efforts worldwide.",
+      author: "Dr. Sarah Johnson",
+      date: "2024-01-15",
+      readTime: "5 min read",
+      image: "https://images.pexels.com/photos/326900/pexels-photo-326900.jpeg?auto=compress&cs=tinysrgb&w=600",
+      category: "Research"
+    },
+    {
+      id: 2,
+      title: "The Future of Wildlife Photography and AI",
+      excerpt: "Explore how machine learning is transforming wildlife photography, from automatic species identification to behavior analysis.",
+      author: "Mark Thompson",
+      date: "2024-01-12",
+      readTime: "7 min read",
+      image: "https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg?auto=compress&cs=tinysrgb&w=600",
+      category: "Technology"
+    },
+    {
+      id: 3,
+      title: "Conservation Success Stories: AI in Action",
+      excerpt: "Learn about real-world applications where AI-powered bird identification has made a significant impact on conservation efforts.",
+      author: "Emily Chen",
+      date: "2024-01-10",
+      readTime: "6 min read",
+      image: "https://images.pexels.com/photos/53581/bald-eagles-bald-eagle-bird-of-prey-adler-53581.jpeg?auto=compress&cs=tinysrgb&w=600",
+      category: "Conservation"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       <div className="container mx-auto px-4 py-8 max-w-7xl">
@@ -111,6 +145,26 @@ function App() {
               <span className="text-sm font-medium text-gray-700">High Accuracy</span>
             </div>
           </div>
+
+          {/* Navigation Links */}
+          <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+            <a 
+              href="species.html" 
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+            >
+              <Brain className="w-5 h-5 mr-2" />
+              Explore Bird Species
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
+            <a 
+              href="blog.html" 
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+            >
+              <BookOpen className="w-5 h-5 mr-2" />
+              Read Our Blog
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
+          </div>
         </div>
 
         {/* Error Message */}
@@ -137,6 +191,81 @@ function App() {
             isProcessing={uploadState.isProcessing}
           />
         )}
+
+        {/* Blog Section */}
+        <div className="mt-20">
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center mb-4">
+              <BookOpen className="w-8 h-8 text-purple-600 mr-3" />
+              <h2 className="text-4xl font-bold text-gray-800">Latest from Our Blog</h2>
+            </div>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Stay updated with the latest insights, research, and developments in AI-powered bird classification
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {blogPosts.map((post) => (
+              <article key={post.id} className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                <div className="relative">
+                  <img 
+                    src={post.image} 
+                    alt={post.title}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="inline-block px-3 py-1 bg-purple-600 text-white text-sm font-medium rounded-full">
+                      {post.category}
+                    </span>
+                  </div>
+                </div>
+                
+                <div className="p-6">
+                  <div className="flex items-center text-sm text-gray-500 mb-3">
+                    <Calendar className="w-4 h-4 mr-2" />
+                    <span>{new Date(post.date).toLocaleDateString()}</span>
+                    <span className="mx-2">•</span>
+                    <span>{post.readTime}</span>
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2">
+                    {post.title}
+                  </h3>
+                  
+                  <p className="text-gray-600 mb-4 line-clamp-3">
+                    {post.excerpt}
+                  </p>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <User className="w-4 h-4 text-gray-400 mr-2" />
+                      <span className="text-sm text-gray-600">{post.author}</span>
+                    </div>
+                    
+                    <a 
+                      href={`blog.html?post=${post.id}`}
+                      className="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium transition-colors duration-200"
+                    >
+                      Read More
+                      <ArrowRight className="w-4 h-4 ml-1" />
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <a 
+              href="blog.html"
+              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+            >
+              <BookOpen className="w-5 h-5 mr-2" />
+              View All Blog Posts
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
+          </div>
+        </div>
 
         {/* Footer */}
         <div className="text-center mt-16">
