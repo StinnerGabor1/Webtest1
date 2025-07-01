@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - AI Bird Classifier</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a4d0f, #2d5016, #3d6b1f, #4a7c23, #5a8f2a);
+            min-height: 100vh;
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Enhanced Nature Background with Parallax Effect */
+        .nature-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(135deg, #1a4d0f, #2d5016, #3d6b1f, #4a7c23, #5a8f2a);
+        }
+
+        .nature-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(139, 195, 74, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(76, 175, 80, 0.25) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(104, 159, 56, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 60% 70%, rgba(129, 199, 132, 0.15) 0%, transparent 50%);
+            animation: natureFloat 12s ease-in-out infinite;
+        }
+
+        .nature-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(2px 2px at 20px 30px, rgba(139, 195, 74, 0.4), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(76, 175, 80, 0.3), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(104, 159, 56, 0.5), transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(129, 199, 132, 0.4), transparent);
+            background-repeat: repeat;
+            background-size: 150px 100px;
+            animation: floatingParticles 20s linear infinite;
+        }
+
+        @keyframes natureFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+            25% { transform: translateY(-10px) rotate(0.3deg); opacity: 0.8; }
+            50% { transform: translateY(-20px) rotate(0.5deg); opacity: 0.9; }
+            75% { transform: translateY(-15px) rotate(0.2deg); opacity: 0.7; }
+        }
+
+        @keyframes floatingParticles {
+            0% { transform: translateY(0px) translateX(0px); }
+            100% { transform: translateY(-100vh) translateX(50px); }
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139, 195, 74, 0.2);
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-content {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .nav-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8bc34a 0%, #689f38 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover {
+            color: #ffffff;
+            background: rgba(139, 195, 74, 0.2);
+            border-color: rgba(139, 195, 74, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Page Layout with Ads */
+        .page-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr 250px;
+            gap: 2rem;
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            padding-top: 6rem;
+        }
+
+        .left-sidebar, .right-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .main-content {
+            min-width: 0;
+        }
+
+        /* Premium Ad Space */
+        .ad-space {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 195, 74, 0.25);
+            border-radius: 25px;
+            padding: 2rem;
+            text-align: center;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: sticky;
+            top: 2rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .ad-space:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(139, 195, 74, 0.4);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .ad-space.large {
+            min-height: 650px;
+        }
+
+        .ad-placeholder {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            line-height: 1.8;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Header Ad (Mobile) */
+        .header-ad, .footer-ad {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(139, 195, 74, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            min-height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 35px;
+            padding: 4rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(139, 195, 74, 0.8),
+                rgba(76, 175, 80, 0.6),
+                rgba(139, 195, 74, 0.8),
+                transparent
+            );
+            animation: borderGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.5; transform: scaleX(0.8); }
+            50% { opacity: 1; transform: scaleX(1); }
+        }
+
+        .hero-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #8bc34a 0%, #689f38 50%, #558b2f 100%);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            margin: 0 auto 2rem;
+            box-shadow: 0 15px 35px rgba(139, 195, 74, 0.4);
+            animation: logoFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+        }
+
+        .hero-title {
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #ffffff 0%, #e8f5e8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .blog-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(139, 195, 74, 0.25);
+            border-radius: 25px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(139, 195, 74, 0.5);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .blog-card:hover .blog-image {
+            transform: scale(1.1);
+        }
+
+        .blog-info {
+            padding: 2rem;
+        }
+
+        .blog-category {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(139, 195, 74, 0.2);
+            border: 2px solid rgba(139, 195, 74, 0.4);
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: #8bc34a;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .blog-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            line-height: 1.3;
+        }
+
+        .blog-excerpt {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+        }
+
+        .blog-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .blog-date {
+            display: flex;
+            align-items: center;
+        }
+
+        .blog-read-time {
+            color: rgba(139, 195, 74, 0.8);
+            font-weight: 500;
+        }
+
+        /* Featured Post */
+        .featured-post {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 35px;
+            overflow: hidden;
+            margin-bottom: 3rem;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .featured-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.25);
+        }
+
+        .featured-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .featured-info {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-category {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: linear-gradient(135deg, #8bc34a 0%, #689f38 100%);
+            border-radius: 15px;
+            font-size: 0.9rem;
+            color: #ffffff;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            width: fit-content;
+        }
+
+        .featured-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .featured-excerpt {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .featured-meta {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        /* Categories Filter */
+        .categories-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .categories-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+        }
+
+        .categories-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .category-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            border-radius: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: capitalize;
+            text-decoration: none;
+        }
+
+        .category-btn:hover {
+            background: rgba(139, 195, 74, 0.2);
+            border-color: rgba(139, 195, 74, 0.5);
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, #8bc34a 0%, #689f38 100%);
+            border-color: #8bc34a;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1400px) {
+            .page-layout {
+                grid-template-columns: 200px 1fr 200px;
+                gap: 1.5rem;
+                padding: 1.5rem;
+                padding-top: 6rem;
+            }
+
+            .ad-space {
+                min-height: 250px;
+                padding: 1.5rem;
+            }
+
+            .ad-space.large {
+                min-height: 500px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .page-layout {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                max-width: 900px;
+                padding-top: 6rem;
+            }
+
+            .left-sidebar, .right-sidebar {
+                display: none;
+            }
+
+            .header-ad, .footer-ad {
+                display: flex;
+            }
+
+            .featured-content {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-image {
+                height: 300px;
+            }
+
+            .featured-info {
+                padding: 2rem;
+            }
+
+            .featured-title {
+                font-size: 1.8rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-content {
+                padding: 0 1rem;
+            }
+
+            .nav-logo {
+                font-size: 1rem;
+            }
+
+            .nav-logo-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+
+            .page-layout {
+                padding: 1rem;
+                padding-top: 5rem;
+            }
+
+            .hero-section {
+                padding: 3rem 2rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .categories-section {
+                padding: 1.5rem;
+            }
+
+            .categories-filter {
+                gap: 0.5rem;
+            }
+
+            .category-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .blog-card {
+                border-radius: 20px;
+            }
+
+            .blog-image {
+                height: 200px;
+            }
+
+            .blog-info {
+                padding: 1.5rem;
+            }
+
+            .featured-info {
+                padding: 1.5rem;
+            }
+
+            .featured-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Hide mobile ads on desktop */
+        @media (min-width: 1201px) {
+            .header-ad, .footer-ad {
+                display: none;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-up {
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nature-bg"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <a href="/" class="nav-logo">
+                <div class="nav-logo-icon">🦅</div>
+                Bird Classifier
+            </a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="species.html" class="nav-link">Species Database</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-layout">
+        <!-- Left Sidebar Ads (Desktop) -->
+        <div class="left-sidebar">
+            <div class="ad-space">
+                <div class="ad-placeholder">Premium<br>Advertisement<br>Space<br><br>300×250<br><br>High Engagement<br>Placement</div>
+            </div>
+            <div class="ad-space large">
+                <div class="ad-placeholder">Skyscraper<br>Advertisement<br>Space<br><br>300×600<br><br>Maximum Visibility<br>Premium Location</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header Ad (Mobile) -->
+            <div class="header-ad">
+                <div class="ad-placeholder">Mobile Banner Advertisement - 728×90<br>High Impact Header Placement</div>
+            </div>
+
+            <!-- Hero Section -->
+            <div class="hero-section fade-in">
+                <div class="hero-logo">📝</div>
+                <h1 class="hero-title">Bird AI Blog</h1>
+                <p class="hero-subtitle">Discover insights, research, and stories about artificial intelligence in bird classification and wildlife conservation</p>
+            </div>
+
+            <!-- Categories Filter -->
+            <div class="categories-section slide-up">
+                <h2 class="categories-title">Browse by Category</h2>
+                <div class="categories-filter">
+                    <a href="#" class="category-btn active" data-category="all">All Posts</a>
+                    <a href="#" class="category-btn" data-category="research">Research</a>
+                    <a href="#" class="category-btn" data-category="technology">Technology</a>
+                    <a href="#" class="category-btn" data-category="conservation">Conservation</a>
+                    <a href="#" class="category-btn" data-category="tutorials">Tutorials</a>
+                    <a href="#" class="category-btn" data-category="news">News</a>
+                </div>
+            </div>
+
+            <!-- Featured Post -->
+            <div class="featured-post fade-in">
+                <div class="featured-content">
+                    <img src="https://images.pexels.com/photos/326900/pexels-photo-326900.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Featured Post" class="featured-image">
+                    <div class="featured-info">
+                        <div class="featured-category">Featured</div>
+                        <h2 class="featured-title">The Future of AI in Wildlife Conservation</h2>
+                        <p class="featured-excerpt">Explore how cutting-edge artificial intelligence is revolutionizing wildlife conservation efforts, from automated species identification to real-time habitat monitoring and protection strategies.</p>
+                        <div class="featured-meta">
+                            <span>👤 Dr. Sarah Johnson</span>
+                            <span>📅 January 15, 2024</span>
+                            <span class="blog-read-time">8 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blog Posts Grid -->
+            <div id="blogGrid" class="blog-grid">
+                <!-- Blog posts will be populated by JavaScript -->
+            </div>
+
+            <!-- Footer Ad (Mobile) -->
+            <div class="footer-ad">
+                <div class="ad-placeholder">Mobile Banner Advertisement - 728×90<br>Strategic Footer Placement</div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar Ads (Desktop) -->
+        <div class="right-sidebar">
+            <div class="ad-space">
+                <div class="ad-placeholder">Square<br>Advertisement<br>Space<br><br>300×250<br><br>Perfect for<br>Product Showcases</div>
+            </div>
+            <div class="ad-space">
+                <div class="ad-placeholder">Medium<br>Rectangle<br>Advertisement<br><br>300×250<br><br>High Click-Through<br>Rate Placement</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const blogPosts = [
+            {
+                id: 1,
+                title: "Understanding Bird Migration Patterns with AI",
+                excerpt: "Discover how artificial intelligence is revolutionizing our understanding of bird migration patterns and helping conservation efforts worldwide.",
+                author: "Dr. Sarah Johnson",
+                date: "2024-01-15",
+                readTime: "5 min read",
+                image: "https://images.pexels.com/photos/326900/pexels-photo-326900.jpeg?auto=compress&cs=tinysrgb&w=600",
+                category: "research"
+            },
+            {
+                id: 2,
+                title: "The Future of Wildlife Photography and AI",
+                excerpt: "Explore how machine learning is transforming wildlife photography, from automatic species identification to behavior analysis.",
+                author: "Mark Thompson",
+                date: "2024-01-12",
+                readTime: "7 min read",
+                image: "https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg?auto=compress&cs=tinysrgb&w=600",
+                category: "technology"
+            },
+            {
+                id: 3,
+                title: "Conservation Success Stories: AI in Action",
+                excerpt: "Learn about real-world applications where AI-powered bird identification has made a significant impact on conservation efforts.",
+                author: "Emily Chen",
+                date: "2024-01-10",
+                readTime: "6 min read",
+                image: "https://images.pexels.com/photos/53581/bald-eagles-bald-eagle-bird-of-prey-adler-53581.jpeg?auto=compress&cs=tinysrgb&w=600",
+                category: "conservation"
+            },
+            {
+                id: 4,
+                title: "Building Your First Bird Classification Model",
+                excerpt: "A step-by-step tutorial on creating your own bird classification model using TensorFlow and deep learning techniques.",
+                author: "Alex Rodriguez",
+                date: "2024-01-08",
+                readTime: "12 min read",
+                image: "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=600",
+                category: "tutorials"
+            },
+            {
+                id: 5,
+                title: "New Species Discovered Through AI Analysis",
+                excerpt: "Recent breakthroughs in AI have led to the discovery of previously unknown bird species in remote rainforest regions.",
+                author: "Dr. Maria Santos",
+                date: "2024-01-05",
+                readTime: "4 min read",
+                image: "https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg?auto=compress&cs=tinysrgb&w=600",
+                category: "news"
+            },
+            {
+                id: 6,
+                title: "Ethical Considerations in Wildlife AI",
+                excerpt: "Examining the ethical implications of using artificial intelligence in wildlife research and conservation efforts.",
+                author: "Prof. David Kim",
+                date: "2024-01-03",
+                readTime: "9 min read",
+                image: "https://images.pexels.com/photos/326900/pexels-photo-326900.jpeg?auto=compress&cs=tinysrgb&w=600",
+                category: "research"
+            },
+            {
+                id: 7,
+                title: "Citizen Science and Bird AI: A Perfect Match",
+                excerpt: "How citizen scientists are contributing to bird AI research and helping improve classification accuracy worldwide.",
+                author: "Lisa Park",
+                date: "2024-01-01",
+                readTime: "6 min read",
+                image: "https://images.pexels.com/photos/53581/bald-eagles-bald-eagle-bird-of-prey-adler-53581.jpeg?auto=compress&cs=tinysrgb&w=600",
+                category: "conservation"
+            },
+            {
+                id: 8,
+                title: "Advanced Image Processing for Bird Detection",
+                excerpt: "Deep dive into the image processing techniques that make accurate bird detection and classification possible.",
+                author: "Dr. James Wilson",
+                date: "2023-12-28",
+                readTime: "10 min read",
+                image: "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=600",
+                category: "technology"
+            },
+            {
+                id: 9,
+                title: "Climate Change Impact on Bird Populations",
+                excerpt: "Using AI to track and predict how climate change is affecting bird migration patterns and population dynamics.",
+                author: "Dr. Rachel Green",
+                date: "2023-12-25",
+                readTime: "8 min read",
+                image: "https://images.pexels.com/photos/326900/pexels-photo-326900.jpeg?auto=compress&cs=tinysrgb&w=600",
+                category: "research"
+            }
+        ];
+
+        let filteredPosts = [...blogPosts];
+        let currentCategory = 'all';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            renderBlogPosts();
+        });
+
+        function setupEventListeners() {
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleCategoryFilter(btn.dataset.category, btn);
+                });
+            });
+        }
+
+        function handleCategoryFilter(category, button) {
+            currentCategory = category;
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            filterPosts();
+            renderBlogPosts();
+        }
+
+        function filterPosts() {
+            if (currentCategory === 'all') {
+                filteredPosts = [...blogPosts];
+            } else {
+                filteredPosts = blogPosts.filter(post => post.category === currentCategory);
+            }
+        }
+
+        function renderBlogPosts() {
+            const grid = document.getElementById('blogGrid');
+            
+            if (filteredPosts.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 2rem;">
+                        <h3 style="font-size: 1.8rem; font-weight: 700; color: #ffffff; margin-bottom: 1rem;">No posts found</h3>
+                        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem;">Try selecting a different category to see more posts.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filteredPosts.map((post, index) => `
+                <article class="blog-card fade-in" style="animation-delay: ${index * 0.1}s">
+                    <img src="${post.image}" alt="${post.title}" class="blog-image" loading="lazy">
+                    <div class="blog-info">
+                        <div class="blog-category">${post.category}</div>
+                        <h3 class="blog-title">${post.title}</h3>
+                        <p class="blog-excerpt">${post.excerpt}</p>
+                        <div class="blog-meta">
+                            <div class="blog-author">
+                                <span>👤 ${post.author}</span>
+                            </div>
+                            <div class="blog-date">
+                                <span>📅 ${new Date(post.date).toLocaleDateString()}</span>
+                            </div>
+                            <div class="blog-read-time">${post.readTime}</div>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
