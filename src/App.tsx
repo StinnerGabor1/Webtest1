@@ -4,7 +4,7 @@ import { PredictionResult } from './components/PredictionResult';
 import { ErrorMessage } from './components/ErrorMessage';
 import { classifyImage, validateImageFile } from './utils/imageClassifier';
 import { UploadState } from './types';
-import { Brain, Zap, Sparkles, BookOpen, Calendar, ArrowRight, User } from 'lucide-react';
+import { Brain, Zap, Sparkles, BookOpen, Calendar, ArrowRight, User, Database } from 'lucide-react';
 
 function App() {
   const [uploadState, setUploadState] = useState<UploadState>({
@@ -152,7 +152,7 @@ function App() {
               href="species.html" 
               className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
-              <Brain className="w-5 h-5 mr-2" />
+              <Database className="w-5 h-5 mr-2" />
               Explore Bird Species
               <ArrowRight className="w-4 h-4 ml-2" />
             </a>
