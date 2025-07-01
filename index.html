@@ -83,23 +83,6 @@
         100% { transform: translateY(-100vh) translateX(50px); }
       }
 
-      .hero-section {
-                padding: 3rem 2rem;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
       /* Navigation Bar */
       .nav-bar {
         position: fixed;
@@ -1216,23 +1199,20 @@
   <body>
     <div class="nature-bg"></div>
 
-    <div class="container">
-        <div class="hero-section fade-in">
-            <div class="hero-logo">🦅</div>
-            <h1 class="hero-title">AI Bird Classifier</h1>
-            <p class="hero-subtitle">
-                Upload a bird image and discover its species using advanced artificial intelligence.
-                Our model can identify over 1,400 different bird species with remarkable accuracy.
-            </p>
-            <div class="hero-buttons">
-                <a href="species.html" class="btn-secondary">
-                    🔍 Browse Species Database
-                </a>
-                <a href="blog.html" class="btn-secondary">
-                    📚 Read Our Blog
-                </a>
-            </div>
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+      <div class="nav-content">
+        <a href="#" class="nav-logo">
+          <div class="nav-logo-icon">🦅</div>
+          Bird Classifier
+        </a>
+        <div class="nav-links">
+          <a href="species" class="nav-link primary">
+            📚 View All Species
+          </a>
         </div>
+      </div>
+    </nav>
 
     <div class="page-layout">
       <!-- Left Sidebar Ads (Desktop) -->
