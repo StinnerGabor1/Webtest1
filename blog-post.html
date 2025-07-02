@@ -93,7 +93,7 @@
         }
 
         .nav-content {
-            max-width: 1500px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
             display: flex;
@@ -145,83 +145,17 @@
             transform: translateY(-2px);
         }
 
-        /* Page Layout with Ads */
+        /* Page Layout */
         .page-layout {
-            display: grid;
-            grid-template-columns: 250px 1fr 250px;
-            gap: 2rem;
-            max-width: 1500px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
             min-height: 100vh;
             padding-top: 6rem;
         }
 
-        .left-sidebar, .right-sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
         .main-content {
             min-width: 0;
-        }
-
-        /* Premium Ad Space */
-        .ad-space {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(139, 195, 74, 0.25);
-            border-radius: 25px;
-            padding: 2rem;
-            text-align: center;
-            min-height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: sticky;
-            top: 2rem;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-
-        .ad-space:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(139, 195, 74, 0.4);
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        .ad-space.large {
-            min-height: 650px;
-        }
-
-        .ad-placeholder {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-align: center;
-            line-height: 1.8;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Header Ad (Mobile) */
-        .header-ad, .footer-ad {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(139, 195, 74, 0.2);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            min-height: 140px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 2rem 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
         }
 
         /* Back Button */
@@ -501,40 +435,7 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 1400px) {
-            .page-layout {
-                grid-template-columns: 200px 1fr 200px;
-                gap: 1.5rem;
-                padding: 1.5rem;
-                padding-top: 6rem;
-            }
-
-            .ad-space {
-                min-height: 250px;
-                padding: 1.5rem;
-            }
-
-            .ad-space.large {
-                min-height: 500px;
-            }
-        }
-
         @media (max-width: 1200px) {
-            .page-layout {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-                max-width: 900px;
-                padding-top: 6rem;
-            }
-
-            .left-sidebar, .right-sidebar {
-                display: none;
-            }
-
-            .header-ad, .footer-ad {
-                display: flex;
-            }
-
             .content-section {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -621,13 +522,6 @@
             }
         }
 
-        /* Hide mobile ads on desktop */
-        @media (min-width: 1201px) {
-            .header-ad, .footer-ad {
-                display: none;
-            }
-        }
-
         /* Animation Classes */
         .fade-in {
             animation: fadeIn 0.8s ease-out;
@@ -679,23 +573,8 @@
     </nav>
 
     <div class="page-layout">
-        <!-- Left Sidebar Ads (Desktop) -->
-        <div class="left-sidebar">
-            <div class="ad-space">
-                <div class="ad-placeholder">Premium<br>Advertisement<br>Space<br><br>300×250<br><br>High Engagement<br>Placement</div>
-            </div>
-            <div class="ad-space large">
-                <div class="ad-placeholder">Skyscraper<br>Advertisement<br>Space<br><br>300×600<br><br>Maximum Visibility<br>Premium Location</div>
-            </div>
-        </div>
-
         <!-- Main Content -->
         <div class="main-content">
-            <!-- Header Ad (Mobile) -->
-            <div class="header-ad">
-                <div class="ad-placeholder">Mobile Banner Advertisement - 728×90<br>High Impact Header Placement</div>
-            </div>
-
             <!-- Back Button -->
             <a href="blog.html" class="back-button fade-in">
                 ← Back to Blog
@@ -797,21 +676,6 @@
                         </div>
                     </a>
                 </div>
-            </div>
-
-            <!-- Footer Ad (Mobile) -->
-            <div class="footer-ad">
-                <div class="ad-placeholder">Mobile Banner Advertisement - 728×90<br>Strategic Footer Placement</div>
-            </div>
-        </div>
-
-        <!-- Right Sidebar Ads (Desktop) -->
-        <div class="right-sidebar">
-            <div class="ad-space">
-                <div class="ad-placeholder">Square<br>Advertisement<br>Space<br><br>300×250<br><br>Perfect for<br>Product Showcases</div>
-            </div>
-            <div class="ad-space">
-                <div class="ad-placeholder">Medium<br>Rectangle<br>Advertisement<br><br>300×250<br><br>High Click-Through<br>Rate Placement</div>
             </div>
         </div>
     </div>
