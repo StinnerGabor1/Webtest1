@@ -7,7 +7,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="mask-icon" href="{{ url_for('static', filename='vite.svg') }}" color="#8bc34a">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4127713270235602" crossorigin="anonymous"></script>
+   <style>
         * {
             margin: 0;
             padding: 0;
@@ -21,6 +25,21 @@
             color: #ffffff;
             overflow-x: hidden;
             position: relative;
+        }
+
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
+
+        a:visited {
+          color: inherit;
+          text-decoration: none;
+        }
+
+        a:hover {
+          text-decoration: underline;
+          color: #aaffaa; /* optional hover color */
         }
 
         /* Enhanced Nature Background with Parallax Effect */
@@ -233,200 +252,105 @@
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
-        /* Blog Grid */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .blog-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(139, 195, 74, 0.25);
-            border-radius: 25px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .blog-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: rgba(139, 195, 74, 0.5);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
-        }
-
-        .blog-image {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .blog-card:hover .blog-image {
-            transform: scale(1.1);
-        }
-
-        .blog-info {
-            padding: 2rem;
-        }
-
-        .blog-category {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            background: rgba(139, 195, 74, 0.2);
-            border: 2px solid rgba(139, 195, 74, 0.4);
-            border-radius: 12px;
-            font-size: 0.8rem;
-            color: #8bc34a;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-        }
-
-        .blog-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 1rem;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-            line-height: 1.3;
-        }
-
-        .blog-excerpt {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .blog-meta {
+        .stats-container {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.85rem;
-        }
-
-        .blog-author {
-            display: flex;
-            align-items: center;
-        }
-
-        .blog-date {
-            display: flex;
-            align-items: center;
-        }
-
-        .blog-read-time {
-            color: rgba(139, 195, 74, 0.8);
-            font-weight: 500;
-        }
-
-        /* Featured Post */
-        .featured-post {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 35px;
-            overflow: hidden;
-            margin-bottom: 3rem;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s ease;
-        }
-
-        .featured-post:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.25);
-        }
-
-        .featured-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-        }
-
-        .featured-info {
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
             justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
         }
 
-        .featured-category {
-            display: inline-block;
-            padding: 0.5rem 1.2rem;
-            background: linear-gradient(135deg, #8bc34a 0%, #689f38 100%);
-            border-radius: 15px;
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(139, 195, 74, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #8bc34a;
+            text-shadow: 0 2px 8px rgba(139, 195, 74, 0.3);
+        }
+
+        .stat-label {
             font-size: 0.9rem;
-            color: #ffffff;
-            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 1.5rem;
-            width: fit-content;
         }
 
-        .featured-title {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-            line-height: 1.2;
-        }
-
-        .featured-excerpt {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 2rem;
-        }
-
-        .featured-meta {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.95rem;
-        }
-
-        /* Categories Filter */
-        .categories-section {
+        /* Search and Filter Section */
+        .search-section {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 30px;
-            padding: 2rem;
+            padding: 3rem;
             margin-bottom: 3rem;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
-        .categories-title {
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
         }
 
-        .categories-filter {
+        .search-bar {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1.2rem 1.2rem 1.2rem 3.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(139, 195, 74, 0.4);
+            border-radius: 20px;
+            font-size: 1.1rem;
+            color: #ffffff;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #8bc34a;
+            box-shadow: 0 0 0 0.25rem rgba(139, 195, 74, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2rem;
+        }
+
+        .filter-buttons {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
             justify-content: center;
         }
 
-        .category-btn {
+        .filter-btn {
             padding: 0.8rem 1.5rem;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(139, 195, 74, 0.3);
@@ -436,45 +360,184 @@
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: capitalize;
-            text-decoration: none;
         }
 
-        .category-btn:hover {
+        .filter-btn:hover {
             background: rgba(139, 195, 74, 0.2);
             border-color: rgba(139, 195, 74, 0.5);
             transform: translateY(-2px);
-            color: #ffffff;
         }
 
-        .category-btn.active {
+        .filter-btn.active {
             background: linear-gradient(135deg, #8bc34a 0%, #689f38 100%);
             border-color: #8bc34a;
             color: #ffffff;
             box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
         }
 
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .featured-content {
-                grid-template-columns: 1fr;
+        /* Blog Grid */
+        .blog-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+              gap: 2rem;
+              align-items: stretch; /* 🔑 Force even heights */
             }
 
-            .featured-image {
-                height: 300px;
+            .blog-card {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              background: rgba(255, 255, 255, 0.08);
+              backdrop-filter: blur(20px);
+              border: 1px solid rgba(139, 195, 74, 0.25);
+              border-radius: 20px;
+              overflow: hidden;
+              transition: all 0.3s ease;
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+              height: 100%; /* 📏 allow grid to stretch them */
             }
 
-            .featured-info {
-                padding: 2rem;
+            .blog-cover-image {
+              width: 100%;
+              height: 350px;
+              object-fit: cover;
+              object-position: center;
+              display: block;
+              flex-shrink: 0;
             }
 
-            .featured-title {
-                font-size: 1.8rem;
+            .blog-info {
+              padding: 1.2rem;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              flex-grow: 1;
             }
 
-            .blog-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                gap: 1.5rem;
+            .blog-title {
+              font-size: 1rem;
+              font-weight: 700;
+              color: #fff;
+              margin-bottom: 0.5rem;
+              line-height: 1.3;
+              text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
             }
+
+            .blog-date {
+              font-size: 0.85rem;
+              color: rgba(255, 255, 255, 0.7);
+              margin-bottom: 0.8rem;
+            }
+
+            .blog-description {
+              color: rgba(255, 255, 255, 0.9);
+              font-size: 0.9rem;
+              line-height: 1.4;
+              flex-grow: 1;
+              display: -webkit-box;
+              -webkit-line-clamp: 3;          /* ✅ Limit lines */
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+
+        /* Loading States */
+        .loading-container {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(139, 195, 74, 0.3);
+            border-top: 4px solid #8bc34a;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 2rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 25px;
+            margin: 2rem 0;
+        }
+
+        .no-results-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.6;
+        }
+
+        .no-results-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .no-results-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+
+        .pagination-btn {
+            padding: 0.8rem 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            border-radius: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .pagination-btn:hover {
+            background: rgba(139, 195, 74, 0.2);
+            border-color: rgba(139, 195, 74, 0.5);
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
+        .pagination-btn.active {
+            background: linear-gradient(135deg, #8bc34a 0%, #689f38 100%);
+            border-color: #8bc34a;
+            color: #ffffff;
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination-info {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
         }
 
         @media (max-width: 768px) {
@@ -509,42 +572,43 @@
                 font-size: 1.1rem;
             }
 
-            .categories-section {
-                padding: 1.5rem;
+            .stats-container {
+                flex-direction: column;
+                gap: 1rem;
             }
 
-            .categories-filter {
+            .stat-item {
+                padding: 1rem 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .search-section {
+                padding: 2rem;
+            }
+
+            .filter-buttons {
                 gap: 0.5rem;
             }
 
-            .category-btn {
+            .filter-btn {
                 padding: 0.6rem 1rem;
                 font-size: 0.9rem;
             }
 
-            .blog-grid {
+            .species-grid {
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
 
-            .blog-card {
+            .species-card {
                 border-radius: 20px;
             }
 
-            .blog-image {
-                height: 200px;
-            }
-
-            .blog-info {
-                padding: 1.5rem;
-            }
-
-            .featured-info {
-                padding: 1.5rem;
-            }
-
-            .featured-title {
-                font-size: 1.5rem;
+            .species-image {
+                height: 180px;
             }
         }
 
@@ -592,219 +656,181 @@
             </a>
             <div class="nav-links">
                 <a href="/" class="nav-link">Home</a>
-                <a href="species.html" class="nav-link">Species Database</a>
-                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="species" class="nav-link">Species Database</a>
+                <a href="blog" class="nav-link">Blog</a>
             </div>
         </div>
     </nav>
-
-    <div class="page-layout">
         <!-- Main Content -->
         <div class="main-content">
             <!-- Hero Section -->
             <div class="hero-section fade-in">
                 <div class="hero-logo">📝</div>
-                <h1 class="hero-title">Bird AI Blog</h1>
-                <p class="hero-subtitle">Discover insights, research, and stories about artificial intelligence in bird classification and wildlife conservation</p>
+                <h1 class="hero-title">Bird Blog</h1>
+                <p class="hero-subtitle">Discover insights, research, and stories about different bird species!</p>
             </div>
 
-            <!-- Categories Filter -->
-            <div class="categories-section slide-up">
-                <h2 class="categories-title">Browse by Category</h2>
-                <div class="categories-filter">
-                    <a href="#" class="category-btn active" data-category="all">All Posts</a>
-                    <a href="#" class="category-btn" data-category="research">Research</a>
-                    <a href="#" class="category-btn" data-category="technology">Technology</a>
-                    <a href="#" class="category-btn" data-category="conservation">Conservation</a>
-                    <a href="#" class="category-btn" data-category="tutorials">Tutorials</a>
-                    <a href="#" class="category-btn" data-category="news">News</a>
-                </div>
-            </div>
-
-            <!-- Featured Post -->
-            <div class="featured-post fade-in">
-                <div class="featured-content">
-                    <img src="https://images.pexels.com/photos/326900/pexels-photo-326900.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Featured Post" class="featured-image">
-                    <div class="featured-info">
-                        <div class="featured-category">Featured</div>
-                        <h2 class="featured-title">The Future of AI in Wildlife Conservation</h2>
-                        <p class="featured-excerpt">Explore how cutting-edge artificial intelligence is revolutionizing wildlife conservation efforts, from automated species identification to real-time habitat monitoring and protection strategies.</p>
-                        <div class="featured-meta">
-                            <span>👤 Dr. Sarah Johnson</span>
-                            <span>📅 January 15, 2024</span>
-                            <span class="blog-read-time">8 min read</span>
-                        </div>
+            <div style="text-align: center; margin-bottom: 2rem;">
+          <div class="search-section slide-up">
+                <div class="search-container">
+                    <div class="search-bar">
+                        <span class="search-icon">🔍</span>
+                        <input
+                            type="text"
+                            id="searchInput"
+                            class="search-input"
+                            placeholder="Search bird species by name, scientific name, or habitat..."
+                        >
                     </div>
-                </div>
-            </div>
 
-            <!-- Blog Posts Grid -->
-            <div id="blogGrid" class="blog-grid">
-                <!-- Blog posts will be populated by JavaScript -->
-            </div>
+        <!-- 🌀 Loading / No Results -->
+        <div id="loadingContainer" style="display:none; text-align: center; color: #fff;">Loading posts...</div>
+        <div id="noResults" style="display:none; text-align: center; color: #ffaaaa;">No blog posts found.</div>
+
+        <!-- 📚 Blog Grid -->
+        <div id="blogGrid" class="blog-grid"></div>
+
+        <!-- 📄 Pagination -->
+        <div id="pagination" class="pagination" style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-top: 2rem;">
+          <button id="prevBtn" onclick="changePage(-1)" style="
+            padding: 0.6rem 1rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease;
+          ">Previous</button>
+
+          <span id="pageInfo" style="color: #fff; font-size: 1rem;">Page 1 of 1</span>
+
+          <button id="nextBtn" onclick="changePage(1)" style="
+            padding: 0.6rem 1rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease;
+          ">Next</button>
         </div>
-    </div>
-
+      </div>
+          </div>
     <script>
-        const blogPosts = [
-            {
-                id: 1,
-                title: "Understanding Bird Migration Patterns with AI",
-                excerpt: "Discover how artificial intelligence is revolutionizing our understanding of bird migration patterns and helping conservation efforts worldwide.",
-                author: "Dr. Sarah Johnson",
-                date: "2024-01-15",
-                readTime: "5 min read",
-                image: "https://images.pexels.com/photos/326900/pexels-photo-326900.jpeg?auto=compress&cs=tinysrgb&w=600",
-                category: "research"
-            },
-            {
-                id: 2,
-                title: "The Future of Wildlife Photography and AI",
-                excerpt: "Explore how machine learning is transforming wildlife photography, from automatic species identification to behavior analysis.",
-                author: "Mark Thompson",
-                date: "2024-01-12",
-                readTime: "7 min read",
-                image: "https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg?auto=compress&cs=tinysrgb&w=600",
-                category: "technology"
-            },
-            {
-                id: 3,
-                title: "Conservation Success Stories: AI in Action",
-                excerpt: "Learn about real-world applications where AI-powered bird identification has made a significant impact on conservation efforts.",
-                author: "Emily Chen",
-                date: "2024-01-10",
-                readTime: "6 min read",
-                image: "https://images.pexels.com/photos/53581/bald-eagles-bald-eagle-bird-of-prey-adler-53581.jpeg?auto=compress&cs=tinysrgb&w=600",
-                category: "conservation"
-            },
-            {
-                id: 4,
-                title: "Building Your First Bird Classification Model",
-                excerpt: "A step-by-step tutorial on creating your own bird classification model using TensorFlow and deep learning techniques.",
-                author: "Alex Rodriguez",
-                date: "2024-01-08",
-                readTime: "12 min read",
-                image: "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=600",
-                category: "tutorials"
-            },
-            {
-                id: 5,
-                title: "New Species Discovered Through AI Analysis",
-                excerpt: "Recent breakthroughs in AI have led to the discovery of previously unknown bird species in remote rainforest regions.",
-                author: "Dr. Maria Santos",
-                date: "2024-01-05",
-                readTime: "4 min read",
-                image: "https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg?auto=compress&cs=tinysrgb&w=600",
-                category: "news"
-            },
-            {
-                id: 6,
-                title: "Ethical Considerations in Wildlife AI",
-                excerpt: "Examining the ethical implications of using artificial intelligence in wildlife research and conservation efforts.",
-                author: "Prof. David Kim",
-                date: "2024-01-03",
-                readTime: "9 min read",
-                image: "https://images.pexels.com/photos/326900/pexels-photo-326900.jpeg?auto=compress&cs=tinysrgb&w=600",
-                category: "research"
-            },
-            {
-                id: 7,
-                title: "Citizen Science and Bird AI: A Perfect Match",
-                excerpt: "How citizen scientists are contributing to bird AI research and helping improve classification accuracy worldwide.",
-                author: "Lisa Park",
-                date: "2024-01-01",
-                readTime: "6 min read",
-                image: "https://images.pexels.com/photos/53581/bald-eagles-bald-eagle-bird-of-prey-adler-53581.jpeg?auto=compress&cs=tinysrgb&w=600",
-                category: "conservation"
-            },
-            {
-                id: 8,
-                title: "Advanced Image Processing for Bird Detection",
-                excerpt: "Deep dive into the image processing techniques that make accurate bird detection and classification possible.",
-                author: "Dr. James Wilson",
-                date: "2023-12-28",
-                readTime: "10 min read",
-                image: "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=600",
-                category: "technology"
-            },
-            {
-                id: 9,
-                title: "Climate Change Impact on Bird Populations",
-                excerpt: "Using AI to track and predict how climate change is affecting bird migration patterns and population dynamics.",
-                author: "Dr. Rachel Green",
-                date: "2023-12-25",
-                readTime: "8 min read",
-                image: "https://images.pexels.com/photos/326900/pexels-photo-326900.jpeg?auto=compress&cs=tinysrgb&w=600",
-                category: "research"
-            }
-        ];
+let blogPosts = [];
+let filteredPosts = [];
+let currentPage = 1;
+const itemsPerPage = 12;
+let searchTerm = '';
 
-        let filteredPosts = [...blogPosts];
-        let currentCategory = 'all';
+document.addEventListener('DOMContentLoaded', function () {
+  fetch('/static/data/blog_posts.json')
+    .then(response => response.json())
+    .then(data => {
+      blogPosts = data;
+      filteredPosts = [...blogPosts];
+      setupSearchListener();
+      renderBlogGrid();
+      updatePagination();
+    })
+    .catch(error => {
+      console.error('Error loading blog data:', error);
+      document.getElementById('blogGrid').innerHTML = '<p>Failed to load blog posts.</p>';
+    });
+});
 
-        document.addEventListener('DOMContentLoaded', function() {
-            setupEventListeners();
-            renderBlogPosts();
-        });
+function setupSearchListener() {
+  const input = document.getElementById('searchInput');
+  if (input) {
+    input.addEventListener('input', debounce(handleSearch, 300));
+  }
+}
 
-        function setupEventListeners() {
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    handleCategoryFilter(btn.dataset.category, btn);
-                });
-            });
-        }
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
+}
 
-        function handleCategoryFilter(category, button) {
-            currentCategory = category;
-            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            filterPosts();
-            renderBlogPosts();
-        }
+function handleSearch() {
+  searchTerm = document.getElementById('searchInput').value.toLowerCase();
+  currentPage = 1;
+  filterPosts();
+  renderBlogGrid();
+  updatePagination();
+}
 
-        function filterPosts() {
-            if (currentCategory === 'all') {
-                filteredPosts = [...blogPosts];
-            } else {
-                filteredPosts = blogPosts.filter(post => post.category === currentCategory);
-            }
-        }
+function filterPosts() {
+  filteredPosts = blogPosts.filter(post => {
+    const matchesSearch =
+      post.title.toLowerCase().includes(searchTerm) ||
+      post.description?.toLowerCase().includes(searchTerm) ||
+      post.content?.toLowerCase().includes(searchTerm);
+    return matchesSearch;
+  });
+}
 
-        function renderBlogPosts() {
-            const grid = document.getElementById('blogGrid');
-            
-            if (filteredPosts.length === 0) {
-                grid.innerHTML = `
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 2rem;">
-                        <h3 style="font-size: 1.8rem; font-weight: 700; color: #ffffff; margin-bottom: 1rem;">No posts found</h3>
-                        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem;">Try selecting a different category to see more posts.</p>
-                    </div>
-                `;
-                return;
-            }
+function renderBlogGrid() {
+  const grid = document.getElementById('blogGrid');
+  const noResults = document.getElementById('noResults');
+  const loading = document.getElementById('loadingContainer');
 
-            grid.innerHTML = filteredPosts.map((post, index) => `
-                <article class="blog-card fade-in" style="animation-delay: ${index * 0.1}s">
-                    <img src="${post.image}" alt="${post.title}" class="blog-image" loading="lazy">
-                    <div class="blog-info">
-                        <div class="blog-category">${post.category}</div>
-                        <h3 class="blog-title">${post.title}</h3>
-                        <p class="blog-excerpt">${post.excerpt}</p>
-                        <div class="blog-meta">
-                            <div class="blog-author">
-                                <span>👤 ${post.author}</span>
-                            </div>
-                            <div class="blog-date">
-                                <span>📅 ${new Date(post.date).toLocaleDateString()}</span>
-                            </div>
-                            <div class="blog-read-time">${post.readTime}</div>
-                        </div>
-                    </div>
-                </article>
-            `).join('');
-        }
-    </script>
+  loading.style.display = 'block';
+  grid.innerHTML = '';
+  noResults.style.display = 'none';
+
+  setTimeout(() => {
+    loading.style.display = 'none';
+
+    if (filteredPosts.length === 0) {
+      noResults.style.display = 'block';
+      return;
+    }
+
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const pagePosts = filteredPosts.slice(startIndex, endIndex);
+
+    grid.innerHTML = pagePosts.map((post, index) => `
+  <a href="/blog/${post.slug}" class="blog-card-link">
+    <div class="blog-card fade-in" style="animation-delay: ${index * 0.1}s">
+      <img src="${post.cover_image}" alt="${post.title}" class="blog-cover-image" loading="lazy">
+      <div class="blog-info">
+        <h3 class="blog-title">${post.title}</h3>
+        <p class="blog-date">${post.created_at}</p>
+        <p class="blog-description">${post.description || ''}</p>
+      </div>
+    </div>
+  </a>
+`).join('');
+  }, 300);
+}
+
+function updatePagination() {
+  const totalPages = Math.ceil(filteredPosts.length / itemsPerPage);
+  document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${totalPages}`;
+  document.getElementById('prevBtn').disabled = currentPage === 1;
+  document.getElementById('nextBtn').disabled = currentPage === totalPages || totalPages === 0;
+  document.getElementById('pagination').style.display = totalPages <= 1 ? 'none' : 'flex';
+}
+
+function changePage(direction) {
+  const totalPages = Math.ceil(filteredPosts.length / itemsPerPage);
+  const newPage = currentPage + direction;
+
+  if (newPage >= 1 && newPage <= totalPages) {
+    currentPage = newPage;
+    renderBlogGrid();
+    updatePagination();
+    document.getElementById('blogGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+</script>
 </body>
 </html>
