@@ -151,7 +151,7 @@
 
         /* Page Layout */
         .page-layout {
-            max-width: 50rem;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
             min-height: 100vh;
@@ -159,17 +159,24 @@
         }
 
         .main-content {
+            min-width: 0;
+        }
+
+        /* Hero Section */
+        .hero-section {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 2.1875rem;
-            padding: 3rem;
+            padding: 4rem;
+            margin-bottom: 3rem;
+            text-align: center;
             box-shadow: 0 1.875rem 3.75rem rgba(0, 0, 0, 0.2);
             position: relative;
             overflow: hidden;
         }
 
-        .main-content::before {
+        .hero-section::before {
             content: '';
             position: absolute;
             top: 0;
@@ -191,7 +198,76 @@
             50% { opacity: 1; transform: scaleX(1); }
         }
 
-        .page-title {
+        .hero-logo {
+            width: 5rem;
+            height: 5rem;
+            background: linear-gradient(135deg, #8bc34a 0%, #689f38 50%, #558b2f 100%);
+            border-radius: 1.375rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            margin: 0 auto 2rem;
+            box-shadow: 0 0.9375rem 2.1875rem rgba(139, 195, 74, 0.4);
+            animation: logoFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-0.5rem) rotate(1deg); }
+        }
+
+        .hero-title {
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #ffffff 0%, #e8f5e8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            text-shadow: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.3);
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 2.1875rem;
+            padding: 4rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 1.875rem 3.75rem rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 0.125rem;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(139, 195, 74, 0.8),
+                rgba(76, 175, 80, 0.6),
+                rgba(139, 195, 74, 0.8),
+                transparent
+            );
+            animation: borderGlow 3s ease-in-out infinite;
+        }
+
+        .section-title {
             color: #ffffff;
             font-weight: 800;
             font-size: 2.5rem;
@@ -222,6 +298,85 @@
         .content-text strong {
             color: #8bc34a;
             font-weight: 600;
+        }
+
+        /* Personal Section with Photo */
+        .personal-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .profile-photo {
+            width: 100%;
+            max-width: 18.75rem;
+            height: 18.75rem;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 0.25rem solid rgba(139, 195, 74, 0.5);
+            box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            justify-self: center;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+            border-color: rgba(139, 195, 74, 0.8);
+            box-shadow: 0 1.5625rem 3.125rem rgba(139, 195, 74, 0.2);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            border-radius: 1.5625rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-0.3125rem);
+            border-color: rgba(139, 195, 74, 0.6);
+            box-shadow: 0 0.9375rem 1.875rem rgba(139, 195, 74, 0.2);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-icon {
+            width: 3.75rem;
+            height: 3.75rem;
+            background: linear-gradient(135deg, #8bc34a 0%, #689f38 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
 
         .highlight-box {
@@ -260,16 +415,32 @@
                 padding-top: 5rem;
             }
 
-            .main-content {
+            .hero-section, .content-section {
                 padding: 2rem;
             }
 
-            .page-title {
+            .hero-title, .section-title {
                 font-size: 2rem;
             }
 
             .content-text {
                 font-size: 1rem;
+            }
+
+            .personal-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .profile-photo {
+                max-width: 12.5rem;
+                height: 12.5rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
             }
         }
 
@@ -310,25 +481,79 @@
     </nav>
 
     <div class="page-layout">
-        <div class="main-content fade-in">
-            <h1 class="page-title">About Us</h1>
-            
-            <div class="content-text">
-                <p>We're a team of passionate <strong>ornithologists, data scientists, and conservation biologists</strong> dedicated to making bird identification accessible to everyone through the power of artificial intelligence.</p>
+        <div class="main-content">
+            <!-- Hero Section -->
+            <div class="hero-section fade-in">
+                <div class="hero-logo">👨‍💻</div>
+                <h1 class="hero-title">About This Project</h1>
+                <p class="hero-subtitle">Learn about the AI Bird Classifier and the developer behind it</p>
+            </div>
 
-                <p>Our mission is simple: <strong>democratize wildlife knowledge</strong> and contribute to global conservation efforts by providing accurate, instant bird species identification to researchers, educators, and nature enthusiasts worldwide.</p>
+            <!-- Project Summary Section -->
+            <div class="content-section fade-in">
+                <h2 class="section-title">Project Overview</h2>
+                <div class="content-text">
+                    <p>The <strong>AI Bird Classifier</strong> is an advanced machine learning application that can identify over 1,486 bird species with high accuracy. This project combines cutting-edge artificial intelligence with a passion for ornithology and conservation.</p>
 
-                <div class="highlight-box">
-                    <p>Our AI model can identify over <strong>1,486 bird species</strong> with <strong>94% accuracy</strong>, helping thousands of users connect with nature and contribute to citizen science projects.</p>
+                    <div class="highlight-box">
+                        <p><strong>Key Features:</strong> Real-time bird species identification, comprehensive species database, educational blog content, and mobile-responsive design for field use.</p>
+                    </div>
+
+                    <p>Built using modern web technologies including <strong>Python Flask</strong> for the backend, <strong>TensorFlow/Keras</strong> for the AI model, and a responsive frontend with beautiful UI/UX design. The application processes images instantly and provides detailed information about identified species.</p>
+
+                    <p>The project serves researchers, educators, birdwatchers, and nature enthusiasts worldwide, making bird identification accessible to everyone while contributing to citizen science and conservation efforts.</p>
+                </div>
+            </div>
+
+            <!-- Personal Section -->
+            <div class="content-section fade-in">
+                <h2 class="section-title">About the Developer</h2>
+                <div class="personal-section">
+                    <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Developer Photo" class="profile-photo">
+                    <div class="content-text">
+                        <p>Hi! I'm a passionate developer and nature enthusiast who created this entire project <strong>single-handedly</strong>. From the initial concept to the final deployment, every line of code, design element, and feature has been crafted by me.</p>
+
+                        <p>With a background in <strong>machine learning and web development</strong>, I combined my technical skills with my love for wildlife to create this comprehensive bird classification platform. The project represents months of dedicated work, including data collection, model training, frontend development, and user experience design.</p>
+
+                        <div class="highlight-box">
+                            <p><strong>Solo Achievement:</strong> This project was developed entirely by one person, showcasing full-stack development skills from AI model creation to responsive web design.</p>
+                        </div>
+
+                        <p>My goal was to make bird identification accessible to everyone while maintaining scientific accuracy and creating a beautiful, user-friendly experience. I believe technology should serve conservation and education, which is why this platform is free and open to all users.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="content-section fade-in">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="content-text">
+                    <p>I'd love to hear from you! Whether you've found a bug, have ideas for new features, want to suggest blog topics, or just want to share your experience using the Bird Classifier, please don't hesitate to reach out.</p>
                 </div>
 
-                <p>Founded in 2023, we started as a small research project and have grown into a comprehensive platform used by <strong>over 50,000 users globally</strong>. Every image classified through our system helps build a better understanding of bird populations and biodiversity trends.</p>
+                <div class="contact-grid">
+                    <a href="mailto:birdclassifier@example.com" class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-title">Email for Bug Reports & Ideas</div>
+                        <div class="contact-description">
+                            Report bugs, suggest features, or propose blog post topics
+                            <br><strong>birdclassifier@example.com</strong>
+                        </div>
+                    </a>
 
-                <p>We believe that technology should serve conservation. That's why we've made our platform <strong>free and accessible</strong>, ensuring that anyone with curiosity about birds can learn and contribute to scientific knowledge.</p>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" class="contact-card">
+                        <div class="contact-icon">💼</div>
+                        <div class="contact-title">LinkedIn Profile</div>
+                        <div class="contact-description">
+                            Connect with me professionally and see my other projects
+                            <br><strong>linkedin.com/in/yourprofile</strong>
+                        </div>
+                    </a>
+                </div>
 
-                <p>Our work is supported by partnerships with leading conservation organizations and research institutions. We're committed to maintaining the highest standards of scientific accuracy while making complex AI technology simple and user-friendly.</p>
-
-                <p>Whether you're a professional researcher, a student, or someone who simply loves birds, our platform is designed to enhance your understanding and appreciation of the incredible diversity of avian life on our planet.</p>
+                <div class="highlight-box" style="margin-top: 2rem;">
+                    <p><strong>Feedback Welcome:</strong> Your input helps improve the Bird Classifier for everyone. I read every message and appreciate all suggestions for making this tool better!</p>
+                </div>
             </div>
         </div>
     </div>
