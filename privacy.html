@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - AI Bird Classifier</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="mask-icon" href="{{ url_for('static', filename='vite.svg') }}" color="#8bc34a">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4127713270235602" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a4d0f, #2d5016, #3d6b1f, #4a7c23, #5a8f2a);
+            min-height: 100vh;
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Enhanced Nature Background with Parallax Effect */
+        .nature-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(135deg, #1a4d0f, #2d5016, #3d6b1f, #4a7c23, #5a8f2a);
+        }
+
+        .nature-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(139, 195, 74, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(76, 175, 80, 0.25) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(104, 159, 56, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 60% 70%, rgba(129, 199, 132, 0.15) 0%, transparent 50%);
+            animation: natureFloat 12s ease-in-out infinite;
+        }
+
+        .nature-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(2px 2px at 20px 30px, rgba(139, 195, 74, 0.4), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(76, 175, 80, 0.3), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(104, 159, 56, 0.5), transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(129, 199, 132, 0.4), transparent);
+            background-repeat: repeat;
+            background-size: 150px 100px;
+            animation: floatingParticles 20s linear infinite;
+        }
+
+        @keyframes natureFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+            25% { transform: translateY(-10px) rotate(0.3deg); opacity: 0.8; }
+            50% { transform: translateY(-20px) rotate(0.5deg); opacity: 0.9; }
+            75% { transform: translateY(-15px) rotate(0.2deg); opacity: 0.7; }
+        }
+
+        @keyframes floatingParticles {
+            0% { transform: translateY(0px) translateX(0px); }
+            100% { transform: translateY(-100vh) translateX(50px); }
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139, 195, 74, 0.2);
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .nav-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8bc34a 0%, #689f38 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover {
+            color: #ffffff;
+            background: rgba(139, 195, 74, 0.2);
+            border-color: rgba(139, 195, 74, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Page Layout */
+        .page-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            padding-top: 6rem;
+        }
+
+        .main-content {
+            min-width: 0;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 35px;
+            padding: 4rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(139, 195, 74, 0.8),
+                rgba(76, 175, 80, 0.6),
+                rgba(139, 195, 74, 0.8),
+                transparent
+            );
+            animation: borderGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.5; transform: scaleX(0.8); }
+            50% { opacity: 1; transform: scaleX(1); }
+        }
+
+        .hero-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #8bc34a 0%, #689f38 50%, #558b2f 100%);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            margin: 0 auto 2rem;
+            box-shadow: 0 15px 35px rgba(139, 195, 74, 0.4);
+            animation: logoFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+        }
+
+        .hero-title {
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #ffffff 0%, #e8f5e8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-title {
+            color: #8bc34a;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title::before {
+            content: '';
+            width: 5px;
+            height: 32px;
+            background: linear-gradient(135deg, #8bc34a 0%, #689f38 100%);
+            border-radius: 3px;
+            margin-right: 1.2rem;
+            box-shadow: 0 2px 8px rgba(139, 195, 74, 0.4);
+        }
+
+        .content-text {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .content-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .content-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-text strong {
+            color: #8bc34a;
+            font-weight: 600;
+        }
+
+        .content-text ul {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .content-text li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .content-text li::before {
+            content: '🔒';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1rem;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .highlight-box {
+            background: rgba(139, 195, 74, 0.15);
+            border-left: 5px solid #8bc34a;
+            padding: 2rem;
+            border-radius: 0 15px 15px 0;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(139, 195, 74, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(139, 195, 74, 0.05), transparent);
+            animation: privacyGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes privacyGlow {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.98);
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .last-updated {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            border-radius: 15px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-info {
+            background: rgba(139, 195, 74, 0.1);
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .contact-info a {
+            color: #8bc34a;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #9ccc65;
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-content {
+                padding: 0 1rem;
+            }
+
+            .nav-logo {
+                font-size: 1rem;
+            }
+
+            .nav-logo-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+
+            .page-layout {
+                padding: 1rem;
+                padding-top: 5rem;
+            }
+
+            .hero-section, .content-section {
+                padding: 2rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .content-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nature-bg"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <a href="/" class="nav-logo">
+                <div class="nav-logo-icon">🦅</div>
+                Bird Classifier
+            </a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="species" class="nav-link">Species Database</a>
+                <a href="blog" class="nav-link">Blog</a>
+                <a href="about" class="nav-link">About Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-layout">
+        <div class="main-content">
+            <!-- Hero Section -->
+            <div class="hero-section fade-in">
+                <div class="hero-logo">🔒</div>
+                <h1 class="hero-title">Privacy Policy</h1>
+                <p class="hero-subtitle">Your privacy and data security are our top priorities</p>
+            </div>
+
+            <!-- Last Updated -->
+            <div class="last-updated fade-in">
+                <strong>Last Updated:</strong> January 15, 2024
+            </div>
+
+            <!-- Introduction -->
+            <div class="content-section fade-in">
+                <h2 class="section-title">Introduction</h2>
+                <div class="content-text">
+                    <p>Welcome to AI Bird Classifier ("we," "our," or "us"). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our bird classification service.</p>
+                    
+                    <div class="highlight-box">
+                        <p>🔒 We are committed to protecting your privacy and ensuring the security of your personal information.</p>
+                    </div>
+                    
+                    <p>By using our service, you agree to the collection and use of information in accordance with this policy. If you do not agree with our policies and practices, please do not use our service.</p>
+                </div>
+            </div>
+
+            <!-- Information We Collect -->
+            <div class="content-section fade-in">
+                <h2 class="section-title">Information We Collect</h2>
+                <div class="content-text">
+                    <h3 style="color: #8bc34a; font-size: 1.4rem; margin-bottom: 1rem;">Information You Provide</h3>
+                    <ul>
+                        <li><strong>Images:</strong> Photos you upload for bird species classification</li>
+                        <li><strong>Contact Information:</strong> Email addresses when you contact us for support</li>
+                        <li><strong>Feedback:</strong> Bug reports, feature requests, and suggestions you submit</li>
+                    </ul>
+
+                    <h3 style="color: #8bc34a; font-size: 1.4rem; margin: 2rem 0 1rem;">Automatically Collected Information</h3>
+                    <ul>
+                        <li><strong>Usage Data:</strong> Pages visited, time spent on site, click patterns</li>
+                        <li><strong>Device Information:</strong> Browser type, operating system, screen resolution</li>
+                        <li><strong>IP Address:</strong> For security and analytics purposes</li>
+                        <li><strong>Cookies:</strong> Small data files stored on your device for functionality</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <p>🚫 We DO NOT store or save any images you upload for classification. All images are processed in real-time and immediately discarded.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How We Use Information -->
+            <div class="content-section fade-in">
+                <h2 class="section-title">How We Use Your Information</h2>
+                <div class="content-text">
+                    <p>We use the information we collect for the following purposes:</p>
+                    <ul>
+                        <li><strong>Service Provision:</strong> To provide and maintain our bird classification service</li>
+                        <li><strong>Image Processing:</strong> To analyze uploaded images and provide species identification</li>
+                        <li><strong>Communication:</strong> To respond to your inquiries and provide customer support</li>
+                        <li><strong>Improvement:</strong> To analyze usage patterns and improve our service</li>
+                        <li><strong>Security:</strong> To monitor for suspicious activity and prevent abuse</li>
+                        <li><strong>Legal Compliance:</strong> To comply with applicable laws and regulations</li>
+                    </ul>
+
+                    <p><strong>We will never:</strong></p>
+                    <ul>
+                        <li>Sell your personal information to third parties</li>
+                        <li>Use your images for training our AI models without explicit consent</li>
+                        <li>Share your data with advertisers for targeting purposes</li>
+                        <li>Store uploaded images on our servers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Data Security -->
+            <div class="content-section fade-in">
+                <h2 class="section-title">Data Security</h2>
+                <div class="content-text">
+                    <p>We implement appropriate technical and organizational security measures to protect your information:</p>
+                    <ul>
+                        <li><strong>Encryption:</strong> All data transmission is encrypted using SSL/TLS protocols</li>
+                        <li><strong>Secure Servers:</strong> Our servers are hosted in secure, monitored data centers</li>
+                        <li><strong>Access Controls:</strong> Limited access to personal data on a need-to-know basis</li>
+                        <li><strong>Regular Updates:</strong> We keep our security systems up to date</li>
+                        <li><strong>Monitoring:</strong> Continuous monitoring for security threats and vulnerabilities</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <p>🛡️ Your uploaded images are processed in memory only and are never written to disk or stored permanently.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cookies and Tracking -->
+            <div class="content-section fade-in">
+                <h2 class="section-title">Cookies and Tracking Technologies</h2>
+                <div class="content-text">
+                    <p>We use cookies and similar tracking technologies to enhance your experience:</p>
+                    
+                    <h3 style="color: #8bc34a; font-size: 1.4rem; margin: 2rem 0 1rem;">Types of Cookies We Use</h3>
+                    <ul>
+                        <li><strong>Essential Cookies:</strong> Required for basic website functionality</li>
+                        <li><strong>Analytics Cookies:</strong> Help us understand how visitors use our site</li>
+                        <li><strong>Preference Cookies:</strong> Remember your settings and preferences</li>
+                    </ul>
+
+                    <h3 style="color: #8bc34a; font-size: 1.4rem; margin: 2rem 0 1rem;">Third-Party Services</h3>
+                    <ul>
+                        <li><strong>Google Analytics:</strong> For website traffic analysis</li>
+                        <li><strong>Google AdSense:</strong> For displaying relevant advertisements</li>
+                    </ul>
+
+                    <p>You can control cookies through your browser settings. However, disabling certain cookies may affect website functionality.</p>
+                </div>
+            </div>
+
+            <!-- Third-Party Services -->
+            <div class="content-section fade-in">
+                <h2 class="section-title">Third-Party Services</h2>
+                <div class="content-text">
+                    <p>Our website integrates with the following third-party services:</p>
+                    
+                    <h3 style="color: #8bc34a; font-size: 1.4rem; margin: 2rem 0 1rem;">Google AdSense</h3>
+                    <p>We use Google AdSense to display advertisements. Google may use cookies to serve ads based on your visits to our site and other sites on the Internet. You can opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" style="color: #8bc34a;">Google's Ads Settings</a>.</p>
+
+                    <h3 style="color: #8bc34a; font-size: 1.4rem; margin: 2rem 0 1rem;">Google Analytics</h3>
+                    <p>We use Google Analytics to analyze website traffic and user behavior. This helps us improve our service. Google Analytics collects information anonymously and reports website trends without identifying individual visitors.</p>
+
+                    <h3 style="color: #8bc34a; font-size: 1.4rem; margin: 2rem 0 1rem;">External Links</h3>
+                    <p>Our website may contain links to external sites (such as Wikipedia for bird species information). We are not responsible for the privacy practices of these external sites.</p>
+                </div>
+            </div>
+
+            <!-- Your Rights -->
+            <div class="content-section fade-in">
+                <h2 class="section-title">Your Privacy Rights</h2>
+                <div class="content-text">
+                    <p>Depending on your location, you may have the following rights regarding your personal information:</p>
+                    <ul>
+                        <li><strong>Access:</strong> Request access to your personal information</li>
+                        <li><strong>Correction:</strong> Request correction of inaccurate information</li>
+                        <li><strong>Deletion:</strong> Request deletion of your personal information</li>
+                        <li><strong>Portability:</strong> Request a copy of your data in a portable format</li>
+                        <li><strong>Objection:</strong> Object to certain processing of your information</li>
+                        <li><strong>Restriction:</strong> Request restriction of processing in certain circumstances</li>
+                    </ul>
+
+                    <div class="contact-info">
+                        <p>To exercise any of these rights, please contact us at:</p>
+                        <p><a href="mailto:privacy@birdclassifier.com">privacy@birdclassifier.com</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Retention -->
+            <div class="content-section fade-in">
+                <h2 class="section-title">Data Retention</h2>
+                <div class="content-text">
+                    <p>We retain your information only as long as necessary for the purposes outlined in this policy:</p>
+                    <ul>
+                        <li><strong>Uploaded Images:</strong> Not stored - processed and immediately discarded</li>
+                        <li><strong>Usage Analytics:</strong> Retained for up to 26 months (Google Analytics default)</li>
+                        <li><strong>Contact Information:</strong> Retained until you request deletion or unsubscribe</li>
+                        <li><strong>Support Requests:</strong> Retained for 2 years for quality assurance</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <p>⏰ We automatically delete old data according to our retention schedule to minimize data storage.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Children's Privacy -->
+            <div class="content-section fade-in">
+                <h2 class="section-title">Children's Privacy</h2>
+                <div class="content-text">
+                    <p>Our service is not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately.</p>
+                    
+                    <p>If we discover that we have collected personal information from a child under 13 without parental consent, we will take steps to remove that information from our servers promptly.</p>
+                </div>
+            </div>
+
+            <!-- International Users -->
+            <div class="content-section fade-in">
+                <h2 class="section-title">International Users</h2>
+                <div class="content-text">
+                    <p>Our service is available globally. If you are accessing our service from outside the United States, please be aware that your information may be transferred to, stored, and processed in the United States where our servers are located.</p>
+                    
+                    <p>By using our service, you consent to the transfer of your information to the United States and other countries where we operate, which may have different data protection laws than your country of residence.</p>
+                </div>
+            </div>
+
+            <!-- Changes to Privacy Policy -->
+            <div class="content-section fade-in">
+                <h2 class="section-title">Changes to This Privacy Policy</h2>
+                <div class="content-text">
+                    <p>We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify you of any material changes by:</p>
+                    <ul>
+                        <li>Posting the updated policy on this page</li>
+                        <li>Updating the "Last Updated" date at the top of this policy</li>
+                        <li>Sending an email notification for significant changes (if you have provided your email)</li>
+                    </ul>
+
+                    <p>We encourage you to review this Privacy Policy periodically to stay informed about how we protect your information.</p>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="content-section fade-in">
+                <h2 class="section-title">Contact Us</h2>
+                <div class="content-text">
+                    <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</p>
+                    
+                    <div class="contact-info">
+                        <p><strong>Email:</strong> <a href="mailto:privacy@birdclassifier.com">privacy@birdclassifier.com</a></p>
+                        <p><strong>Subject Line:</strong> Privacy Policy Inquiry</p>
+                        <p><strong>Response Time:</strong> We aim to respond within 48 hours</p>
+                    </div>
+
+                    <p>We take all privacy concerns seriously and will work to address any issues promptly and transparently.</p>
+
+                    <div class="highlight-box">
+                        <p>📧 For general questions, bug reports, or feature requests, please use our main contact email: <a href="mailto:contact@birdclassifier.com" style="color: #ffffff;">contact@birdclassifier.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Parallax effect for background
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.nature-bg');
+            const speed = scrolled * 0.5;
+            parallax.style.transform = `translateY(${speed}px)`;
+        });
+    </script>
+</body>
+</html>
