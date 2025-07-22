@@ -1,17 +1,25 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QTWFBKS0LV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-QTWFBKS0LV');
+    </script>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bird Classifier - AI-Powered Bird Species Recognition (BETA)</title>
+    <title>Bird Classifier - AI-Powered Free Bird Species Recognition Application</title>
     <meta name="description" content="Upload any bird image and discover the species using our advanced AI-powered classification technology. Fast, accurate, and secure.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <link rel="mask-icon" href="{{ url_for('static', filename='vite.svg') }}" color="#8bc34a">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="/favicon.png">
+    <meta itemprop="image" content="https://birdrecognizerfree.com/favicon.png">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4127713270235602" crossorigin="anonymous"></script>
@@ -30,6 +38,21 @@
         overflow-x: hidden;
         position: relative;
       }
+
+      a {
+          color: inherit;
+          text-decoration: none;
+        }
+
+        a:visited {
+          color: inherit;
+          text-decoration: none;
+        }
+
+        a:hover {
+          text-decoration: underline;
+          color: #aaffaa; /* optional hover color */
+        }
 
       /* Enhanced Nature Background with Parallax Effect */
       .nature-bg {
@@ -1096,6 +1119,97 @@
       .bird-gallery.hidden {
         display: none;
       }
+
+      /* Blog Grid */
+        .blog-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+              gap: 2rem;
+              align-items: stretch; /* 🔑 Force even heights */
+            }
+
+            .blog-card {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              background: rgba(255, 255, 255, 0.08);
+              backdrop-filter: blur(20px);
+              border: 1px solid rgba(139, 195, 74, 0.25);
+              border-radius: 20px;
+              overflow: hidden;
+              transition: all 0.3s ease;
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+              height: 100%;
+            }
+
+            .blog-cover-image {
+              width: 100%;
+              height: 350px;
+              object-fit: cover;
+              object-position: center;
+              display: block;
+              flex-shrink: 0;
+            }
+
+            .blog-info {
+              padding: 1.2rem;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              flex-grow: 1;
+            }
+
+            .blog-title {
+              font-size: 1rem;
+              font-weight: 700;
+              color: #fff;
+              margin-bottom: 0.5rem;
+              line-height: 1.3;
+              text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+            }
+
+            .blog-date {
+              font-size: 0.85rem;
+              color: rgba(255, 255, 255, 0.7);
+              margin-bottom: 0.8rem;
+            }
+
+            .blog-description {
+              color: rgba(255, 255, 255, 0.9);
+              font-size: 0.9rem;
+              line-height: 1.4;
+              flex-grow: 1;
+              display: -webkit-box;
+              -webkit-line-clamp: 3;          /* ✅ Limit lines */
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+      @media (max-width: 600px) {
+          .btn-primary {
+            padding: 0.8rem 1.5rem;
+            font-size: 0.95rem;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            text-align: center;
+          }
+        .blog-grid {
+          grid-template-columns: 1fr; /* Single column layout on small screens */
+        }
+
+        .blog-cover-image {
+          height: 200px; /* Reduce image height for mobile */
+        }
+
+        .blog-title {
+          font-size: 1.1rem;
+        }
+
+        .blog-description {
+          font-size: 0.95rem;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1109,14 +1223,23 @@
           Bird Classifier (BETA)
         </a>
         <div class="nav-links">
+          <a href="about_us" class="nav-link primary">
+            📚 About Us
+          </a>
+          <div class="nav-links">
+          <a href="privacy" class="nav-link primary">
+            📚 Privacy Policy
+          </a>
+        </div>
+        <div class="nav-links">
           <a href="species" class="nav-link primary">
             📚 View Species Database
           </a>
+        </div>
+        <div class="nav-links">
           <a href="blog" class="nav-link primary">
             📚 View Blogs
           </a>
-          <a href="about" class="nav-link">About Us</a>
-          <a href="privacy" class="nav-link">Privacy</a>
         </div>
       </div>
     </nav>
@@ -1129,10 +1252,48 @@
           <div class="logo-container">
             <div class="logo">🦅</div>
             <div>
-              <h1 class="text-center">Bird Classifier</h1>
-              <p class="subtitle text-center">AI-Powered Bird Species Recognition</p>
+              <h1 class="text-center"> Free Bird Recognizer Application</h1>
+              <p class="subtitle text-center">AI-Powered Bird Species Recognition Application</p>
             </div>
           </div>
+
+          <div class="content-section fade-in">
+                <h2 class="section-title">Welcome to Free Bird Recognizer Application Website</h2>
+                <div class="content-text">
+                  <p>
+                    Discover the world of birds like never before with our  <strong>Free Bird Recognizer Application</strong>, the cutting-edge
+                    <strong>AI bird identifier</strong> designed for bird watchers, nature lovers, and wildlife enthusiasts.
+                    Instantly <strong>identify bird species</strong> from your photos or audio recordings using our advanced
+                    <strong>artificial intelligence bird recognition system</strong>. Whether you're a beginner birder or a
+                    seasoned ornithologist, our platform helps you explore thousands of
+                    <strong>bird species from North America, Europe, Asia, and beyond</strong>.
+                  </p>
+
+                  <p>
+                    Using <strong>deep learning and computer vision</strong>, our Free Bird Recognizer Application provides accurate results for
+                    <strong>common backyard birds</strong>, <strong>rare migratory birds</strong>, <strong>songbirds</strong>,
+                    <strong>raptors</strong>, <strong>waterfowl</strong>, and more. Simply upload a photo and let our
+                    <strong>smart bird identifier</strong> do the rest. Perfect for <strong>bird watching</strong>,
+                    <strong>field research</strong>, and nature exploration.
+                  </p>
+
+                  <ul>
+                    <li>✅ <strong>Identify birds online</strong> instantly</li>
+                    <li>✅ Powered by advanced <strong>AI bird recognition software</strong></li>
+                    <li>✅ Access detailed <strong>bird profiles</strong> with habitat, and behavior</li>
+                    <li>✅ Ideal for birders, educators, researchers, and wildlife photographers</li>
+                  </ul>
+
+                  <p>
+                    Join our global birding community and elevate your <strong>bird watching experience</strong>. Whether you're
+                    spotting a <strong>cardinal</strong>, <strong>blue jay</strong>, <strong>hummingbird</strong>, or
+                    <strong>bald eagle</strong>, BirdAI is your go-to tool for <strong>automatic bird identification</strong>.
+                    Start identifying birds today and unlock the wonders of avian biodiversity.
+                  </p>
+
+                  <p><strong>Try the Free Bird Recognizer Application now – the smartest way to identify birds online!</strong></p>
+                </div>
+            </div>
 
           <!-- Enhanced Bird Slideshow with More Images -->
           <div class="slideshow-container">
@@ -1273,6 +1434,24 @@
           </div>
           {% endif %}
 
+          <section class="recent-blogs fade-in">
+            <h2 class="section-title">Latest Blog Posts</h2>
+            <div class="blog-grid">
+              {% for post in recent_posts %}
+              <a href="/blog/{{ post.slug }}" class="blog-card-link">
+                <div class="blog-card">
+                  <img src="{{ post.cover_image }}" alt="{{ post.title }}" class="blog-cover-image" />
+                  <div class="blog-info">
+                    <h3 class="blog-title">{{ post.title }}</h3>
+                    <p class="blog-date">{{ post.created_at }}</p>
+                    <p class="blog-description">{{ post.description }}</p>
+                  </div>
+                </div>
+              </a>
+              {% endfor %}
+            </div>
+          </section>
+
           <!-- Enhanced Instructions Section -->
           <div class="info-section">
             <h3>How to Use the Bird Classifier</h3>
@@ -1300,7 +1479,7 @@
               <li>Your privacy and data security are our absolute top priorities</li>
             </ul>
             <p style="text-align: center; margin-top: 2rem;">
-              <a href="privacy.html" style="color: #8bc34a; text-decoration: none; font-weight: 600; border: 1px solid rgba(139, 195, 74, 0.3); padding: 0.8rem 1.5rem; border-radius: 15px; transition: all 0.3s ease; display: inline-block;">
+              <a href="privacy" style="color: #8bc34a; text-decoration: none; font-weight: 600; border: 1px solid rgba(139, 195, 74, 0.3); padding: 0.8rem 1.5rem; border-radius: 15px; transition: all 0.3s ease; display: inline-block;">
                 📋 Read Full Privacy Policy
               </a>
             </p>
