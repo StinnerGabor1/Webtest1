@@ -1064,6 +1064,259 @@
           transform: translateX(0.25rem);
       }
 
+      /* Animation Classes */
+        .welcome-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .welcome-icon {
+            width: 5rem;
+            height: 5rem;
+            background: linear-gradient(135deg, #8bc34a 0%, #689f38 50%, #558b2f 100%);
+            border-radius: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 1rem 2rem rgba(139, 195, 74, 0.4);
+            animation: logoFloat 4s ease-in-out infinite;
+        }
+
+        .welcome-title {
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #ffffff 0%, #e8f5e8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .welcome-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-shadow: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.3);
+        }
+
+        .welcome-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .welcome-intro {
+            text-align: center;
+        }
+
+        .welcome-intro p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .highlight-number {
+            color: #8bc34a;
+            font-weight: 700;
+            font-size: 1.2em;
+            text-shadow: 0 0.125rem 0.25rem rgba(139, 195, 74, 0.3);
+        }
+
+        .upload-prompt {
+            background: rgba(139, 195, 74, 0.15);
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem auto;
+            max-width: 32rem;
+        }
+
+        .upload-prompt-icon {
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-0.5rem); }
+            60% { transform: translateY(-0.25rem); }
+        }
+
+        .upload-prompt p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 500;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(139, 195, 74, 0.25);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-0.5rem);
+            border-color: rgba(139, 195, 74, 0.5);
+            box-shadow: 0 1rem 2rem rgba(139, 195, 74, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            text-shadow: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .mission-statement {
+            background: rgba(139, 195, 74, 0.15);
+            border-left: 0.25rem solid #8bc34a;
+            border-radius: 0 1.5rem 1.5rem 0;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(139, 195, 74, 0.2);
+        }
+
+        .mission-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .mission-statement p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .mission-statement strong {
+            color: #8bc34a;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .welcome-title {
+                font-size: 2.5rem;
+            }
+
+            .welcome-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            .mission-statement {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .upload-prompt {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        .fade-in {
+          opacity: 0;
+          animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-section {
+          margin-bottom: 3rem;
+        }
+
+        .section-title {
+          color: #8bc34a;
+          font-size: 2rem;
+          font-weight: 700;
+          margin-bottom: 2rem;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .content-text {
+          color: rgba(255, 255, 255, 0.95);
+          font-size: 1.1rem;
+          line-height: 1.8;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .content-text p {
+          margin-bottom: 1.5rem;
+        }
+
+        .content-text ul {
+          list-style: none;
+          padding: 0;
+          margin: 2rem 0;
+        }
+
+        .content-text li {
+          margin-bottom: 1rem;
+          padding-left: 2rem;
+          position: relative;
+        }
+
+        .content-text li::before {
+          content: '🌿';
+          position: absolute;
+          left: 0;
+          top: 0;
+          font-size: 1.1rem;
+        }
+
+        .content-text strong {
+          color: #8bc34a;
+          font-weight: 600;
+        }
+
       /* Responsive Design Enhancements */
       @media (max-width: 1400px) {
         .page-layout {
@@ -1466,6 +1719,56 @@
                   </p>
 
                   <p><strong>Try the Free Bird Recognizer Application now – the smartest way to identify birds online!</strong></p>
+                </div>
+            </div>
+
+            <div class="content-section fade-in">
+                <div class="welcome-header">
+                    <div class="welcome-icon">🦅</div>
+                    <h2 class="welcome-title">Welcome to Free Bird Recognizer</h2>
+                    <p class="welcome-subtitle">Advanced AI-Powered Bird Classification System</p>
+                </div>
+                
+                <div class="welcome-content">
+                    <div class="welcome-intro">
+                        <p>Our sophisticated machine learning model can identify over <span class="highlight-number">1,486 different bird species</span> with remarkable accuracy. Whether you're a researcher, educator, birdwatcher, or nature enthusiast, our tool makes bird identification accessible to everyone.</p>
+                        
+                        <div class="upload-prompt">
+                            <div class="upload-prompt-icon">📸</div>
+                            <p>Simply upload a photo of any bird, and discover what our AI can tell you!</p>
+                        </div>
+                    </div>
+
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🔍</div>
+                            <h3>Species Identification</h3>
+                            <p>Accurate classification with common and scientific names</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">📊</div>
+                            <h3>Confidence Score</h3>
+                            <p>Reliability percentage for each prediction result</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">📚</div>
+                            <h3>Detailed Information</h3>
+                            <p>Comprehensive species data and characteristics</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">🌱</div>
+                            <h3>Educational Resources</h3>
+                            <p>Learning materials and conservation information</p>
+                        </div>
+                    </div>
+
+                    <div class="mission-statement">
+                        <div class="mission-icon">🌍</div>
+                        <p>Our mission is to <strong>democratize wildlife knowledge</strong> and support conservation efforts through cutting-edge technology. The application is completely <strong>free to use</strong> and requires no registration or personal information.</p>
+                    </div>
                 </div>
             </div>
 
