@@ -911,6 +911,159 @@
         z-index: 1;
       }
 
+      /* Welcome Section Styles */
+      .welcome-content {
+          text-align: center;
+      }
+
+      .welcome-header {
+          margin-bottom: 3rem;
+      }
+
+      .welcome-icon {
+          width: 5rem;
+          height: 5rem;
+          background: linear-gradient(135deg, #8bc34a 0%, #689f38 50%, #558b2f 100%);
+          border-radius: 1.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 2.5rem;
+          margin: 0 auto 2rem;
+          box-shadow: 0 1rem 2rem rgba(139, 195, 74, 0.4);
+          animation: logoFloat 4s ease-in-out infinite;
+      }
+
+      .welcome-title {
+          color: #ffffff;
+          font-weight: 800;
+          font-size: 3rem;
+          margin-bottom: 1rem;
+          text-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3);
+          background: linear-gradient(135deg, #ffffff 0%, #e8f5e8 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+      }
+
+      .welcome-subtitle {
+          color: rgba(255, 255, 255, 0.9);
+          font-size: 1.3rem;
+          font-weight: 400;
+          text-shadow: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.3);
+          max-width: 50rem;
+          margin: 0 auto;
+      }
+
+      .welcome-description {
+          margin-bottom: 3rem;
+      }
+
+      .welcome-description p {
+          color: rgba(255, 255, 255, 0.95);
+          font-size: 1.1rem;
+          line-height: 1.8;
+          text-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.3);
+          max-width: 50rem;
+          margin: 0 auto;
+      }
+
+      .welcome-description strong {
+          color: #8bc34a;
+          font-weight: 600;
+      }
+
+      .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+          gap: 2rem;
+          margin-bottom: 3rem;
+      }
+
+      .feature-card {
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(15px);
+          border: 1px solid rgba(139, 195, 74, 0.3);
+          border-radius: 1.5rem;
+          padding: 2rem;
+          text-align: center;
+          transition: all 0.3s ease;
+      }
+
+      .feature-card:hover {
+          transform: translateY(-0.3125rem);
+          border-color: rgba(139, 195, 74, 0.6);
+          box-shadow: 0 0.9375rem 1.875rem rgba(139, 195, 74, 0.2);
+      }
+
+      .feature-icon {
+          width: 3.75rem;
+          height: 3.75rem;
+          background: linear-gradient(135deg, #8bc34a 0%, #689f38 100%);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 1rem;
+          font-size: 1.5rem;
+          box-shadow: 0 0.5rem 1rem rgba(139, 195, 74, 0.3);
+      }
+
+      .feature-title {
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: #ffffff;
+          margin-bottom: 0.5rem;
+          text-shadow: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.3);
+      }
+
+      .feature-description {
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 0.9rem;
+          line-height: 1.5;
+          text-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.3);
+      }
+
+      .welcome-cta {
+          margin-top: 2rem;
+      }
+
+      .cta-button {
+          display: inline-flex;
+          align-items: center;
+          padding: 1rem 2rem;
+          background: linear-gradient(135deg, #8bc34a 0%, #689f38 100%);
+          border-radius: 1.5rem;
+          color: #ffffff;
+          font-size: 1.1rem;
+          font-weight: 600;
+          text-shadow: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0.5rem 1rem rgba(139, 195, 74, 0.4);
+          cursor: pointer;
+          transition: all 0.3s ease;
+          text-decoration: none;
+      }
+
+      .cta-button:hover {
+          transform: translateY(-0.1875rem) scale(1.05);
+          box-shadow: 0 0.9375rem 1.875rem rgba(139, 195, 74, 0.5);
+      }
+
+      .cta-icon {
+          margin-right: 0.5rem;
+          font-size: 1.2rem;
+      }
+
+      .cta-arrow {
+          margin-left: 0.5rem;
+          font-size: 1.2rem;
+          transition: transform 0.3s ease;
+      }
+
+      .cta-button:hover .cta-arrow {
+          transform: translateX(0.25rem);
+      }
+
       /* Responsive Design Enhancements */
       @media (max-width: 1400px) {
         .page-layout {
@@ -1053,6 +1206,27 @@
 
         .gallery-title {
           font-size: 1.8rem;
+        }
+
+        .welcome-title {
+            font-size: 2rem;
+        }
+
+        .welcome-subtitle {
+            font-size: 1.1rem;
+        }
+
+        .welcome-description p {
+            font-size: 1rem;
+        }
+
+        .features-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .feature-card {
+            padding: 1.5rem;
         }
       }
 
@@ -1294,6 +1468,49 @@
                   <p><strong>Try the Free Bird Recognizer Application now – the smartest way to identify birds online!</strong></p>
                 </div>
             </div>
+
+        <!-- Welcome Section -->
+        <div class="content-section fade-in">
+            <div class="welcome-content">
+                <div class="welcome-header">
+                    <div class="welcome-icon">🤖</div>
+                    <h2 class="welcome-title">Welcome to AI Bird Classifier</h2>
+                    <p class="welcome-subtitle">Experience the power of artificial intelligence with our advanced bird species identification system</p>
+                </div>
+
+                <div class="welcome-description">
+                    <p>Our cutting-edge machine learning model can identify over <strong>1,486 bird species</strong> with remarkable accuracy. Simply upload any bird photo and watch as our AI instantly analyzes and classifies what it sees, providing detailed information about the species, habitat, and characteristics.</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3 class="feature-title">Instant Results</h3>
+                        <p class="feature-description">Get classification results in seconds with our optimized AI models</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3 class="feature-title">Advanced AI</h3>
+                        <p class="feature-description">Powered by state-of-the-art deep learning algorithms</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3 class="feature-title">High Accuracy</h3>
+                        <p class="feature-description">Reliable predictions with confidence scores for every classification</p>
+                    </div>
+                </div>
+
+                <div class="welcome-cta">
+                    <div class="cta-button">
+                        <span class="cta-icon">📸</span>
+                        Start Classifying Birds Now
+                        <span class="cta-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
           <!-- Enhanced Bird Slideshow with More Images -->
           <div class="slideshow-container">
