@@ -167,6 +167,66 @@ function App() {
           </div>
         </div>
 
+        {/* Welcome Section */}
+        <div className="mb-16">
+          <div className="bg-white/80 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20 p-8 lg:p-12 relative overflow-hidden">
+            {/* Decorative gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-purple-50/30 to-pink-50/50 rounded-3xl"></div>
+            
+            {/* Content */}
+            <div className="relative z-10">
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl shadow-lg mb-6">
+                  <Sparkles className="w-8 h-8 text-white" />
+                </div>
+                <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+                  Welcome to AI Image Classification
+                </h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                  Experience the power of artificial intelligence with our advanced image classification system. 
+                  Simply upload any image and watch as our AI instantly identifies and analyzes what it sees.
+                </p>
+              </div>
+
+              {/* Features Grid */}
+              <div className="grid md:grid-cols-3 gap-6 mb-8">
+                <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/30 hover:shadow-lg transition-all duration-300">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <Zap className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-800 mb-2">Instant Results</h3>
+                  <p className="text-gray-600 text-sm">Get classification results in seconds with our optimized AI models</p>
+                </div>
+                
+                <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/30 hover:shadow-lg transition-all duration-300">
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <Brain className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-800 mb-2">Advanced AI</h3>
+                  <p className="text-gray-600 text-sm">Powered by state-of-the-art machine learning algorithms</p>
+                </div>
+                
+                <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/30 hover:shadow-lg transition-all duration-300">
+                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <Sparkles className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-800 mb-2">High Accuracy</h3>
+                  <p className="text-gray-600 text-sm">Reliable predictions with confidence scores for every classification</p>
+                </div>
+              </div>
+
+              {/* Call to Action */}
+              <div className="text-center">
+                <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                  <Camera className="w-5 h-5 mr-2" />
+                  Start Classifying Images
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Error Message */}
         {uploadState.error && (
           <ErrorMessage 
